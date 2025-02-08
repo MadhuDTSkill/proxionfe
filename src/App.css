@@ -1,0 +1,120 @@
+*::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  scroll-behavior: smooth;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  @apply bg-gradient-to-t from-primary to-primary;
+}
+
+.zero {
+  letter-spacing: -1px; /* Decreases space between characters */
+}
+
+body {
+  color: rgb(150, 150, 150);
+}
+
+.font-main {
+  font-family: "Comfortaa", sans-serif;
+}
+
+.cp {
+  @apply cursor-pointer;
+}
+
+.-hover {
+  @apply bg-gradient-to-t hover:from-orange-800 hover:to-orange-300;
+}
+
+strong {
+  @apply font-bold mr-1 !important;
+}
+
+.prompt-placeholder::placeholder {
+  opacity: 0.3;
+  /* Adjust the opacity value as needed */
+}
+
+.dp::placeholder {
+  opacity: 0.3 !important;
+  /* Adjust the opacity value as needed */
+}
+
+.border-primary {
+  @apply border-main !important;
+}
+
+.i {
+  @apply bg-transparent p-2 border-2 rounded-md border-main outline-none dp !important;
+}
+
+/* Hide the up and down arrows in all browsers */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  /* Firefox */
+}
+
+/* Optional: Remove the spinner from the right side in some versions of Chrome */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.twinkle {
+  display: inline-block;
+  opacity: 0;
+  animation: twinkle 0.5s forwards; /* Animate to full opacity */
+}
+
+@keyframes twinkle {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+code {
+  padding: 0.2em 0.4em; /* Padding around the text */
+  border-radius: 4px; /* Rounded corners */
+  font-family: "Courier New", Courier, monospace; /* Monospace font */
+  font-size: 1.1rem; /* Slightly larger font */
+}
+
+pre {
+  margin-bottom: 20px !important;
+  margin-top: 20px !important;
+  background-color: #1e1e1e; /* Darker background for block code */
+  color: rgba(255, 255, 255, 0.7); /* White text */
+  padding: 3em; /* Padding around the code block */
+  max-width: 100%; /* Set maximum width */
+  overflow-x: auto; /* Allow horizontal scrolling only */
+  font-family: "Courier New", Courier, monospace; /* Monospace font */
+  font-size: 1rem; /* Font size */
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 2px 2px 5px 2px black; /* Box shadow for a subtle depth */
+}
+
+strong {
+  @apply text-main !important;
+}

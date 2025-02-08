@@ -1,0 +1,75 @@
+[
+    {
+      "name": "Everything Universe",
+      "topics": [
+        { "name": "The Universe (General Overview)", "description": "A vast expanse of space, time, and matter that includes everything we know." },
+        { "name": "Origin of the Universe", "description": "The Big Bang theory explains how the universe began 13.8 billion years ago." },
+        { "name": "The Observable Universe", "description": "The part of the universe we can see, limited by the speed of light and cosmic expansion." },
+        { "name": "Expansion of the Universe", "description": "The universe is continuously expanding, with galaxies moving away from each other." },
+        { "name": "Cosmic Microwave Background", "description": "Faint radiation left over from the Big Bang, providing clues about the early universe." },
+        { "name": "Fate of the Universe", "description": "The universe may end in a Big Crunch, Big Freeze, or Big Rip, depending on dark energy." },
+        { "name": "Multiverse Theories", "description": "Some theories suggest our universe is just one of many in a vast multiverse." }
+      ]
+    },
+    {
+      "name": "Planets",
+      "topics": [
+        { "name": "Planets (General Overview)", "description": "Celestial bodies orbiting stars, ranging from rocky to gas giants." },
+        { "name": "Mercury", "description": "The smallest planet and closest to the Sun, with extreme temperature variations." },
+        { "name": "Venus", "description": "A scorching hot planet with a thick, toxic atmosphere and runaway greenhouse effect." },
+        { "name": "Earth", "description": "Our home planet, the only known world to support life." },
+        { "name": "Mars", "description": "The Red Planet, with signs of ancient water and potential for future human missions." },
+        { "name": "Jupiter", "description": "The largest planet, a gas giant with a massive storm known as the Great Red Spot." },
+        { "name": "Saturn", "description": "Famous for its stunning ring system and dozens of moons." },
+        { "name": "Uranus", "description": "An ice giant with a tilted axis, causing extreme seasonal changes." },
+        { "name": "Neptune", "description": "A cold, windy planet with the fastest known winds in the solar system." },
+        { "name": "Exoplanets", "description": "Planets outside our solar system, some of which may be habitable." }
+      ]
+    },
+    {
+      "name": "Stars",
+      "topics": [
+        { "name": "Stars (General Overview)", "description": "Massive spheres of hydrogen and helium undergoing nuclear fusion." },
+        { "name": "The Sun", "description": "The star at the center of our solar system, providing heat and light to Earth." },
+        { "name": "Red Giants", "description": "A late stage in a star’s life, expanding and cooling before collapsing." },
+        { "name": "White Dwarfs", "description": "Dense remnants of stars that have exhausted their nuclear fuel." },
+        { "name": "Neutron Stars", "description": "Extremely dense remnants of supernovae, sometimes forming pulsars." },
+        { "name": "Black Holes", "description": "Regions of space with gravitational pull so strong that not even light can escape." },
+        { "name": "Supernovae", "description": "The explosive death of a star, often leading to neutron stars or black holes." }
+      ]
+    },
+    {
+      "name": "Galaxies",
+      "topics": [
+        { "name": "Galaxies (General Overview)", "description": "Massive systems of stars, gas, and dark matter bound by gravity." },
+        { "name": "The Milky Way", "description": "Our home galaxy, a barred spiral with billions of stars." },
+        { "name": "Andromeda", "description": "Our nearest large galaxy, set to collide with the Milky Way in 4.5 billion years." },
+        { "name": "Spiral Galaxies", "description": "Galaxies with rotating arms, including the Milky Way." },
+        { "name": "Elliptical Galaxies", "description": "Spherical or elongated galaxies with little gas and older stars." },
+        { "name": "Irregular Galaxies", "description": "Galaxies without a defined shape, often influenced by gravity." },
+        { "name": "Dwarf Galaxies", "description": "Small galaxies with a few billion stars, often orbiting larger ones." },
+        { "name": "Active Galaxies (Quasars, Blazars)", "description": "Galaxies with supermassive black holes emitting massive energy." }
+      ]
+    },
+    {
+      "name": "Space Phenomena",
+      "topics": [
+        { "name": "Black Holes", "description": "Invisible objects with gravity so strong that nothing can escape." },
+        { "name": "Wormholes", "description": "Theoretical tunnels connecting distant points in space-time." },
+        { "name": "Time Dilation", "description": "Time slows down near massive objects or at high speeds." },
+        { "name": "Dark Matter", "description": "An invisible substance that makes up most of the universe’s mass." },
+        { "name": "Dark Energy", "description": "A mysterious force driving the accelerated expansion of the universe." },
+        { "name": "Cosmic Microwave Background", "description": "The oldest light in the universe, a remnant of the Big Bang." },
+        { "name": "The Big Bang", "description": "The explosive event that started the universe 13.8 billion years ago." }
+      ]
+    },
+    {
+      "name": "Cosmic Mysteries",
+      "topics": [
+        { "name": "The Great Filter (Fermi Paradox)", "description": "Why haven’t we found intelligent alien life despite vast probabilities?" },
+        { "name": "Are We Alone?", "description": "The ongoing search for extraterrestrial life in the universe." },
+        { "name": "Universe’s Fate (Big Crunch, Big Freeze, Big Rip)", "description": "Possible scenarios for how the universe will end." },
+        { "name": "Missing Antimatter", "description": "Why does our universe have more matter than antimatter?" }
+      ]
+    }
+  ]

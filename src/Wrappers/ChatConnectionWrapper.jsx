@@ -1,0 +1,104 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { useParams } from 'react-router-dom'
+import { getData } from '../Functions/localStorage'
+import apiCallWithToken from '../Functions/Axios';
+
+
+const token = getData('accessToken')
+
+const ChatConnectionWrapper = (WrappedComponent) => {
+
+    return (props) => {
+        const ws = useRef(null);
+        const { chat_id } = useParams()
+        const [isConnected, setIsConnected] = useState(false);
+        const [isLoading, setIsLoading] = useState(false);
+        const [waitingMessage, setWaitingMessage] = useState('Loading...');
+        const [isMessagesLoading, setIsMessagesLoading] = useState(true);
+        const [isTyping, setIsTyping] = useState(false);
+        const [messages, setMessages] = useState([]);
+
+
+        const sendPrompt = (prompt) => {
+            if (ws.current && ws.current.readyState === WebSocket.OPEN) {
+                setIsLoading(true)
+                ws.current.send(JSON.stringify(prompt));
+            }
+        };
+
+        const getMessages = () => {
+            let url = `chat/${chat_id}/llm-responses/`
+            let body = {}
+            let method = 'get'
+            let loadingState = setIsMessagesLoading
+            const onSuccess = (data) => {
+                setMessages(data)
+            }
+            const onError = (error) => {
+                console.error('Error fetching messages:', error);
+            }
+
+            apiCallWithToken(url, body, method, loadingState, onSuccess, onError)
+        }
+
+
+        const setupWebSocket = () => {
+            ws.current = ws.current || new WebSocket(`ws://127.0.0.1:8000/ws/chat/${chat_id}?token=${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uX2tleSI6IjQ1ZXEzeXBuN3JxNDNnMWswYnRibWEyNTQ2NTJ2cjlsIiwiZXhwIjoxNzM5MjI1MDQyfQ.x5P2frNDxrh3MccAY3zleei_GZs5g0Zvgyy7JZEwR1E"}`);
+
+            ws.current.onopen = () => {
+                getMessages()
+                setIsConnected(true);
+                console.log("WebSocket connected!");
+            };
+
+            ws.current.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+                if (data.type === 'status') {
+                    setWaitingMessage(data.source)
+                }
+            }
+
+            ws.current.onerror = (event) => {
+                console.error("WebSocket error observed:", event);
+                setIsConnected(false);
+                setIsMessagesLoading(true)
+
+            };
+
+            ws.current.onclose = (event) => {
+                console.log(`WebSocket is closed now`);
+                setIsConnected(false);
+                setIsMessagesLoading(true)
+            };
+        };
+
+        useEffect(() => {
+            console.log(chat_id)
+            setupWebSocket();
+            return () => {
+                if (ws.current.readyState === WebSocket.OPEN) {
+                    ws.current.close();
+                    ws.current = null
+                    setIsMessagesLoading(true)
+                    setIsConnected(false);
+                }
+            };
+        }, [chat_id]);
+
+        return (
+            <WrappedComponent
+                {...props}
+                isConnected={isConnected}
+                isLoading={isLoading}
+                isMessagesLoading={isMessagesLoading}
+                isTyping={isTyping}
+                sendPrompt={sendPrompt}
+                messages={messages}
+                waitingMessage={waitingMessage}
+            />
+        )
+    }
+}
+
+export default ChatConnectionWrapper
+
