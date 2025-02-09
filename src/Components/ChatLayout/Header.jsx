@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import ProfileMenu from './ProfileMenu';
 import LOGO from "../../assets/images/proxion.png";
 import Title from '../../Title';
+import NotesViewModal from './NotesViewModal';
 
 const Header = () => {
 
@@ -13,7 +14,10 @@ const Header = () => {
           <img src={LOGO} alt="Proxion Logo" className="h-10 w-auto" />
           <Title />
         </Link>
-        <ProfileMenu />
+        <div className='flex items-center space-x-2'>
+          <NotesViewModal />
+          <ProfileMenu />
+        </div>
       </div>
     </div>
   )

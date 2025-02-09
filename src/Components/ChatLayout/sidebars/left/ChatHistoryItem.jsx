@@ -6,7 +6,7 @@ import { getData } from '../../../../Functions/localStorage';
 import DeleteModal from './DeleteModal'
 import Card from '../../../ui/Card';
 
-const ChatHistoryItem = ({ chat, onDelete }) => {
+const ChatHistoryItem = ({ chat, onDelete, onCurrentFlagUpdate }) => {
     const nav = useNavigate();
     const { chat_id } = useParams(); // Get the current chat id from the URL
     const [isModalOpen, setModalOpen] = useState(false); // State to manage modal visibility
@@ -16,21 +16,13 @@ const ChatHistoryItem = ({ chat, onDelete }) => {
         return nav(`/chats/${chat.id}`);
     };
 
-    const handleNewChat = () => {
-        return nav(`/`);
-    };
-
-    const getNewChatTemp = () => {
-        return getData('newChat');
-    };
-
-    const clearNewChatTemp = () => {
-        localStorage.removeItem('newChat');
-    };
-
     // Check if the chat is active
     const isActive = chat_id === chat.id;
-    const isNewChat = chat.id === getNewChatTemp();
+    const isNewChat = chat.is_new;
+
+    const updateCurrentChatFlag = () => {
+        onCurrentFlagUpdate(chat.id);
+    };
 
     // Function to handle delete confirmation
     const handleDelete = () => {
@@ -40,7 +32,6 @@ const ChatHistoryItem = ({ chat, onDelete }) => {
     const confirmDelete = () => {
         onDelete(chat.id); // Call the delete function passed as a prop
         setModalOpen(false); // Close the modal after confirmation
-        handleNewChat()
     };
 
     return (
@@ -50,14 +41,14 @@ const ChatHistoryItem = ({ chat, onDelete }) => {
                     }`}
                 onClick={handleNavigate}
             >
-                <span className='truncate text-sm font-thin'>
+                <span className='truncate text-xs font-thin'>
                     {isNewChat ? (
                         <ReactTyped
                             strings={[chat.name || 'New Chat']}
                             typeSpeed={50}
                             loop={false}
                             showCursor={false}
-                            onComplete={clearNewChatTemp}
+                            onComplete={updateCurrentChatFlag}
                         />
                     ) : (
                         chat.name || 'New Chat'

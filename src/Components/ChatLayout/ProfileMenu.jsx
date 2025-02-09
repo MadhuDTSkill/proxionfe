@@ -44,7 +44,7 @@ const ProfileMenu = () => {
       {/* Dropdown Menu */}
       {isOpen && (
         <div className="absolute right-0 mt-2 w-64 z-10">
-          <Card>
+          <Card fill>
             <ul className="">
               {/* Settings Option */}
               <li

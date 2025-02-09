@@ -8,11 +8,11 @@ const Categories = ({ categories, selectedCategory, setSelectedCategory }) => {
             <div className="flex flex-col space-y-2">
                 {categories.map((category, index) => (
                     <Card
+                        key={index}
                         extraClassName={`${selectedCategory === category.name ? "border-main scale-[1.02]" : ""}`}
                         onClick={() => setSelectedCategory(category.name)}
                     >
                         <div
-                            key={index}
                             className={`w-full cursor-pointer flex flex-col justify-center items-center transition-all`}
                         >
                             <span className="text-sm">{category.name}</span>

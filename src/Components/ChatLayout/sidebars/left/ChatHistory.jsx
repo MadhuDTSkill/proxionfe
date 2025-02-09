@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import ChatHistoryItem from './ChatHistoryItem';
 import apiCallWithToken from '../../../../Functions/Axios';
-import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
 import { PiSpinnerGapBold } from "react-icons/pi";
 
 const ChatHistory = () => {
 
     const { chat_id } = useParams()
+    const chatsRefreshState = useSelector((state) => state.store.chatsRefresh);
+    const nav = useNavigate()
     const [chats, setChats] = React.useState({});
     const [isLoading, setIsLoading] = useState(false)
 
@@ -24,13 +27,30 @@ const ChatHistory = () => {
         apiCallWithToken(url, body, method, loadingState, onSuccess, onError)
     }
 
+    const updateCurrentChatFlag = (chat_id) => {
+        let url = `chat/chats/${chat_id}/`
+        let body = {
+            is_new: false
+        }
+        let method = 'patch'
+        let loadingStatge = null
+        const onSuccess = (response) => {
+            getChats()
+        }
+        const onError = (error) => {
+            console.log(error)
+        }
+        apiCallWithToken(url, body, method, loadingStatge, onSuccess, onError)
+    }
+
     const deleteChat = (chat_id) => {
-        let url = `chat/${chat_id}/`
+        let url = `chat/chats/${chat_id}/`
         let body = {}
         let method = 'delete'
         let loadingState = setIsLoading
         const onSuccess = (data) => {
             getChats()
+            nav('/chats')
         }
         const onError = (error) => {
             console.log(error)
@@ -42,12 +62,12 @@ const ChatHistory = () => {
 
     useEffect(() => {
         getChats()
-    }, [chat_id])
+    }, [chat_id, chatsRefreshState])
 
     return (
         <div className='flex-1 overflow-auto'>
             {
-                isLoading && chats.length === 0 ?
+                isLoading && Object.keys(chats).every(key => !chats[key]?.length) ?
                     <div className='h-full flex justify-center items-center'>
                         <PiSpinnerGapBold size={20} className='text-main animate-spin' />
                     </div>
@@ -60,13 +80,19 @@ const ChatHistory = () => {
                                     <h2 className='text-xs font-semibold mt-4 mb-1'>{period}</h2>
                                     <div className='flex flex-col space-y-2'>
                                         {chats[period].map((chat, index) => (
-                                            <ChatHistoryItem key={index} chat={chat} onDelete={deleteChat} />
+                                            <ChatHistoryItem key={index} chat={chat} onDelete={deleteChat} onCurrentFlagUpdate={updateCurrentChatFlag} />
                                         ))}
                                     </div>
                                 </>
                             }
                         </div>
                     ))
+            }
+            {
+                Object.keys(chats).every(key => !chats[key]?.length) &&
+                <div className='h-full flex justify-center items-center'>
+                    <h1 className='text-sm text-gray-400'>No chats found</h1>
+                </div>
             }
         </div>
     );

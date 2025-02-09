@@ -2,7 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   latestMessage: null,
-  recentChats: [],
+  waitingMessage: null,
+  chatsRefresh: false,
+  isNotesBusy: false,
 };
 
 export const Slice = createSlice({
@@ -10,35 +12,24 @@ export const Slice = createSlice({
   initialState,
   reducers: {
     // Latest response management
-    addNewMessage: (state, action) => {
+    addLatestMessage: (state, action) => {
       const newMessage = action.payload;
       state.latestMessage = newMessage;
     },
-    addNewMessageChunk: (state, action) => {
-      const newMessageChunk = action.payload;
-      if (state.latestMessage && newMessageChunk) {
-        state.latestMessage.response += newMessageChunk || "";
-      }
+    // Waiting message management
+    addWaitingMessage: (state, action) => {
+      const newMessage = action.payload;
+      state.waitingMessage = newMessage;
     },
-    // Recent chats management
-    addNewRecentChat: (state, action) => {
-      const newChat = action.payload;
-
-      // Check for duplicates
-      if (
-        !state.recentChats.some((model) => model?.id === newChat?.id) &&
-        newChat
-      ) {
-        if (state.recentChats.length >= 5) {
-          state.recentChats.pop();
-        }
-        state.recentChats.unshift(newChat);
-      }
+    refreshChats: (state) => {
+      state.chatsRefresh = !state.chatsRefresh;
+    },
+    setNotesBusy: (state, action) => {
+      state.isNotesBusy = action.payload;
     },
   },
 });
 
-export const { addNewRecentChat, addNewMessage, addNewMessageChunk } =
-  Slice.actions;
+export const { addLatestMessage, addWaitingMessage, refreshChats, setNotesBusy } = Slice.actions;
 
 export default Slice.reducer;

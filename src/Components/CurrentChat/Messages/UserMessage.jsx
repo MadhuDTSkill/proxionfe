@@ -7,7 +7,7 @@ const UserMessage = ({
   return (
     <div className='max-w-3xl mx-auto'>
       <h1 className='font-semibold text-sm my-2'>You</h1>
-      <Markdown className={'text-sm text-body'}>
+      <Markdown className={'text-sm llm-response'}>
         {message.prompt}
       </Markdown>
     </div>

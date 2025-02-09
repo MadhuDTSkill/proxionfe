@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getData } from '../Functions/localStorage'
 import apiCallWithToken from '../Functions/Axios';
+import { addLatestMessage, addWaitingMessage, refreshChats } from '../redux/Slice';
 
 
 const token = getData('accessToken')
@@ -11,9 +13,9 @@ const ChatConnectionWrapper = (WrappedComponent) => {
     return (props) => {
         const ws = useRef(null);
         const { chat_id } = useParams()
+        const dispatch = useDispatch()
         const [isConnected, setIsConnected] = useState(false);
         const [isLoading, setIsLoading] = useState(false);
-        const [waitingMessage, setWaitingMessage] = useState('Loading...');
         const [isMessagesLoading, setIsMessagesLoading] = useState(true);
         const [isTyping, setIsTyping] = useState(false);
         const [messages, setMessages] = useState([]);
@@ -41,12 +43,21 @@ const ChatConnectionWrapper = (WrappedComponent) => {
             apiCallWithToken(url, body, method, loadingState, onSuccess, onError)
         }
 
+        const addMessage = (message) => {
+            if (messages.length === 0) {
+                dispatch(refreshChats())
+            }
+            let allMessages = [...messages, message]
+            setMessages(messages => ([...allMessages]))
+            setIsTyping(false)
+            dispatch(addWaitingMessage(null))
+
+        };
 
         const setupWebSocket = () => {
             ws.current = ws.current || new WebSocket(`ws://127.0.0.1:8000/ws/chat/${chat_id}?token=${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uX2tleSI6IjQ1ZXEzeXBuN3JxNDNnMWswYnRibWEyNTQ2NTJ2cjlsIiwiZXhwIjoxNzM5MjI1MDQyfQ.x5P2frNDxrh3MccAY3zleei_GZs5g0Zvgyy7JZEwR1E"}`);
 
             ws.current.onopen = () => {
-                getMessages()
                 setIsConnected(true);
                 console.log("WebSocket connected!");
             };
@@ -54,15 +65,18 @@ const ChatConnectionWrapper = (WrappedComponent) => {
             ws.current.onmessage = (event) => {
                 const data = JSON.parse(event.data);
                 if (data.type === 'status') {
-                    setWaitingMessage(data.source)
+                    dispatch(addWaitingMessage(data.data))
+                }
+                else if (data.type === 'llm_response') {
+                    dispatch(addLatestMessage(data.data))
+                    setIsLoading(false)
+                    setIsTyping(true)
                 }
             }
-
             ws.current.onerror = (event) => {
                 console.error("WebSocket error observed:", event);
                 setIsConnected(false);
                 setIsMessagesLoading(true)
-
             };
 
             ws.current.onclose = (event) => {
@@ -73,7 +87,7 @@ const ChatConnectionWrapper = (WrappedComponent) => {
         };
 
         useEffect(() => {
-            console.log(chat_id)
+            getMessages()
             setupWebSocket();
             return () => {
                 if (ws.current.readyState === WebSocket.OPEN) {
@@ -94,7 +108,7 @@ const ChatConnectionWrapper = (WrappedComponent) => {
                 isTyping={isTyping}
                 sendPrompt={sendPrompt}
                 messages={messages}
-                waitingMessage={waitingMessage}
+                addMessage={addMessage}
             />
         )
     }

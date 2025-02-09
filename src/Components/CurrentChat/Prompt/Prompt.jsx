@@ -21,7 +21,6 @@ const Prompt = ({ setStaticPrompt, setPrompt, prompt, onSubmit, isLoading, isTyp
     const currentRows = Math.floor(event.target.scrollHeight / textareaLineHeight) - 1;
     const maxRows = 10;
     const newRows = Math.min(currentRows, maxRows);
-    console.log(newRows)
     if (currentRows === previousRows) {
       event.target.rows = newRows || 1;
     }

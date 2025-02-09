@@ -6,7 +6,7 @@ const Header = () => {
     return (
         <div className='flex flex-col justify-center items-center pb-2'>
 
-            <Button extraClassName='w-full'>
+            <Button href={'/new-chat'} extraClassName='w-full'>
                 <div className='flex items-center space-x-2'>
                     <PiPlus size={20} />
                     <span className='text-sm'>New Chat</span>

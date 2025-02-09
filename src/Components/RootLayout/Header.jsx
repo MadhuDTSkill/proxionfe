@@ -6,9 +6,7 @@ import Title from "../../Title";
 
 const NavLinks = [
     { name: "New Chat", link: "/new-chat" },
-    { name: "Chats", link: "/chats" },
     { name: "Notes", link: "/notes" },
-    { name: "Settings", link: "/settings" },
 ];
 
 const Header = () => {
@@ -33,11 +31,11 @@ const Header = () => {
                 ))}
             </nav>
 
-            {/* Right: Login Button */}
+            {/* Right: SignIn Button */}
             <Button
                 href={''}
             >
-                <h1 className="text-sm">Login</h1>
+                <h1 className="text-sm">SignIn</h1>
             </Button>
         </div>
     );

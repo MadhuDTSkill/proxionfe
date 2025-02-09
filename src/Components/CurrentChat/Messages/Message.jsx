@@ -5,21 +5,23 @@ import MessageMenu from './MessageMenu'
 
 const Message = ({
   message,
+  addMessage,
+  scrollCallBack,
   isLoading,
   isTyping,
-  streamingElementRef,
   waitingMessage,
   showMenu
 }) => {
   return (
     <div>
-      <div className='border border-gray-700'>
+      <div className='border border-gray-700 md:p-4'>
         <UserMessage message={message} />
         <ModelResponse
-          streamingElementRef={streamingElementRef}
           isLoading={isLoading}
           isTyping={isTyping}
           message={message}
+          addMessage={addMessage}
+          scrollCallBack={scrollCallBack}
           waitingMessage={waitingMessage}
         />
       </div>

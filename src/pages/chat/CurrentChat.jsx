@@ -12,7 +12,7 @@ const CurrentChat = ({
   isTyping,
   sendPrompt,
   messages,
-  waitingMessage
+  addMessage
 }) => {
   const location = useLocation();
   const [prompt, setPrompt] = useState("");
@@ -62,11 +62,11 @@ const CurrentChat = ({
         ) : (
           <Messages
             messages={messages}
+            addMessage={addMessage}
             staticPrompt={staticPrompt}
             isLoading={isLoading}
             isTyping={isTyping}
             scrollCallBack={scrollToBottom}
-            waitingMessage={waitingMessage}
           />
         )}
       </div>

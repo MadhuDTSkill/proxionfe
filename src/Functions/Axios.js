@@ -57,15 +57,15 @@ instanceWithToken.interceptors.response.use(
 );
 
 const apiCallWithToken = async (endpoint, body, method, loadingState, onSuccess, onError) => {
-  loadingState(true);
+  loadingState && loadingState(true);
   await instanceWithToken[method](endpoint, body)
     .then((response) => {
       let data = response.data;
-      loadingState(false);
+      loadingState && loadingState(false);
       return onSuccess(data);
     })
     .catch((error) => {
-      loadingState(false);
+      loadingState && loadingState(false);
       return onError(error);
     });
 };

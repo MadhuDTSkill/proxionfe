@@ -15,7 +15,7 @@ const ChatLayout = () => {
   };
 
   return (
-    <div className='relative flex p-2 w-full h-dvh bg-cover font-main bg-center bg-no-repeat bg-gradient-to-r from-[#030014] via-[#0d0725] to-[#030014] text-gray-400 overflow-auto space-x-2'
+    <div className='relative flex p-2 w-full h-dvh bg-cover font-main bg-center bg-no-repeat bg-gradient-to-r from-[#030014] via-[#0d0725] to-[#030014] text-gray-300 overflow-auto space-x-2'
       style={{
         backgroundImage: `url(${BG})`,
         backgroundBlendMode: "darken"

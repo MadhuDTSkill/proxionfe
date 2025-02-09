@@ -3,15 +3,14 @@ import Message from './Message';
 import { useSelector } from 'react-redux';
 import { useInView } from 'react-intersection-observer';
 import { IoMdArrowDown } from 'react-icons/io';
-import Card from '../../ui/Card';
 
 const Messages = ({
   messages,
+  addMessage,
+  scrollCallBack,
   staticPrompt,
   isLoading,
   isTyping,
-  scrollCallBack,
-  waitingMessage
 }) => {
 
   const { ref, inView } = useInView({
@@ -23,17 +22,19 @@ const Messages = ({
     (state) => state.store.latestMessage
   );
 
+  const waitingMessageState = useSelector((state) => state.store.waitingMessage);
+
   return (
     <div className='relative'>
       <div className='flex flex-col gap-2 w-full'>
-        {messages.map((message) => (
-          // <Card key={message.id}>
-          <Message key={message.id} message={message} showMenu />
-          // </Card>
+        {messages.map((message, index) => (
+          <Message key={index} message={message} showMenu />
         ))}
         {isTyping && (
           <Message
             message={latestMessageState}
+            addMessage={addMessage}
+            scrollCallBack={scrollCallBack}
             isTyping={isTyping}
           />
         )}
@@ -41,7 +42,7 @@ const Messages = ({
           <Message
             key='loading-message'
             isLoading={isLoading}
-            waitingMessage={waitingMessage}
+            waitingMessage={waitingMessageState || { content: 'Loading ...' }}
             message={{
               id: 'loading',
               prompt: staticPrompt,

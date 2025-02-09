@@ -2,7 +2,7 @@
     {
       "name": "Everything Universe",
       "topics": [
-        { "name": "The Universe (General Overview)", "description": "A vast expanse of space, time, and matter that includes everything we know." },
+        { "name": "The Universe", "description": "A vast expanse of space, time, and matter that includes everything we know." },
         { "name": "Origin of the Universe", "description": "The Big Bang theory explains how the universe began 13.8 billion years ago." },
         { "name": "The Observable Universe", "description": "The part of the universe we can see, limited by the speed of light and cosmic expansion." },
         { "name": "Expansion of the Universe", "description": "The universe is continuously expanding, with galaxies moving away from each other." },
@@ -14,7 +14,7 @@
     {
       "name": "Planets",
       "topics": [
-        { "name": "Planets (General Overview)", "description": "Celestial bodies orbiting stars, ranging from rocky to gas giants." },
+        { "name": "Planets", "description": "Celestial bodies orbiting stars, ranging from rocky to gas giants." },
         { "name": "Mercury", "description": "The smallest planet and closest to the Sun, with extreme temperature variations." },
         { "name": "Venus", "description": "A scorching hot planet with a thick, toxic atmosphere and runaway greenhouse effect." },
         { "name": "Earth", "description": "Our home planet, the only known world to support life." },
@@ -23,13 +23,29 @@
         { "name": "Saturn", "description": "Famous for its stunning ring system and dozens of moons." },
         { "name": "Uranus", "description": "An ice giant with a tilted axis, causing extreme seasonal changes." },
         { "name": "Neptune", "description": "A cold, windy planet with the fastest known winds in the solar system." },
+        { "name": "Pluto", "description": "A dwarf planet, now classified as a 'plutoid' due to its icy composition." },
         { "name": "Exoplanets", "description": "Planets outside our solar system, some of which may be habitable." }
+      ]
+    },
+    {
+      "name": "Moons",
+      "topics": [
+        { "name": "Moons", "description": "Natural satellites orbiting planets or dwarf planets." },
+        { "name": "Moon", "description": "Our only natural satellite, with a rich history of human exploration." },
+        { "name": "Phobos", "description": "Small moon of Mars, discovered by Asaph Hall in 1877." },
+        { "name": "Deimos", "description": "Small moon of Mars, discovered by Asaph Hall in 1877." },
+        { "name": "Io", "description": "A moon of Jupiter, known for its active volcanoes and volcanic eruptions." },
+        { "name": "Europa", "description": "A moon of Jupiter, believed to have an ocean beneath its icy surface." },
+        { "name": "Ganymede", "description": "The largest moon in the solar system, with a subsurface ocean." },
+        { "name": "Titan", "description": "The largest moon of Saturn, with a thick atmosphere and liquid methane seas." },
+        { "name": "Triton", "description": "A large moon of Neptune, with a retrograde orbit and geologically active surface." },
+        { "name": "Charon", "description": "The largest moon of Pluto, discovered in 1978 by James Christy." }
       ]
     },
     {
       "name": "Stars",
       "topics": [
-        { "name": "Stars (General Overview)", "description": "Massive spheres of hydrogen and helium undergoing nuclear fusion." },
+        { "name": "Stars", "description": "Massive spheres of hydrogen and helium undergoing nuclear fusion." },
         { "name": "The Sun", "description": "The star at the center of our solar system, providing heat and light to Earth." },
         { "name": "Red Giants", "description": "A late stage in a star’s life, expanding and cooling before collapsing." },
         { "name": "White Dwarfs", "description": "Dense remnants of stars that have exhausted their nuclear fuel." },
@@ -41,7 +57,7 @@
     {
       "name": "Galaxies",
       "topics": [
-        { "name": "Galaxies (General Overview)", "description": "Massive systems of stars, gas, and dark matter bound by gravity." },
+        { "name": "Galaxies", "description": "Massive systems of stars, gas, and dark matter bound by gravity." },
         { "name": "The Milky Way", "description": "Our home galaxy, a barred spiral with billions of stars." },
         { "name": "Andromeda", "description": "Our nearest large galaxy, set to collide with the Milky Way in 4.5 billion years." },
         { "name": "Spiral Galaxies", "description": "Galaxies with rotating arms, including the Milky Way." },
