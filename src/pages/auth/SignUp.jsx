@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { ReactTyped } from 'react-typed';
 import Title from '../../Title'
 import { apiCall } from '../../Functions/Axios';
-import { setData } from '../../Functions/localStorage';
 import { ImSpinner9 } from "react-icons/im";
 import Card from '../../Components/ui/Card';
 import Button from '../../Components/ui/Button';
@@ -10,7 +9,8 @@ import Button from '../../Components/ui/Button';
 const Signup = () => {
   // State for form inputs
   const [formData, setFormData] = useState({
-    name: '',
+    first_name: '',
+    last_name: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -28,12 +28,11 @@ const Signup = () => {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    let url = 'users/register/'
+    let url = 'auth/register'
     let body = formData;
     let method = 'post';
     let loadingState = setIsLoading
     const onSuccess = (data) => {
-      setData('accessToken', data.token)
       window.location.href = '/'
     }
     const onError = (error) => {

@@ -2,7 +2,9 @@ import React from 'react';
 import Badge from '../../Components/ui/Badge';
 import { WiStars } from 'react-icons/wi';
 import { FaBookOpen, FaRobot, FaLock, FaPencilAlt } from 'react-icons/fa';
+import { PiPlus } from 'react-icons/pi'
 import Card from '../ui/Card';
+import Button from '../ui/Button';
 
 const Welcome = () => {
     return (
@@ -24,6 +26,14 @@ const Welcome = () => {
                 Dive deep into the <strong>Mysteries of the Universe</strong> with AI-powered cosmology chats.
                 From black holes to dark energy, Proxion helps you <strong>Think, Explore, and Understand.</strong>
             </h2>
+            <div className='mt-8 flex flex-col items-center space-y-4'>
+                <Button href={'/new-chat'} extraClassName='w-52'>
+                    <div className='flex items-center space-x-2'>
+                        <PiPlus size={20} />
+                        <span className='text-sm'>New Chat</span>
+                    </div>
+                </Button>
+            </div>
 
             {/* Features in Card Format */}
             <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl w-full">

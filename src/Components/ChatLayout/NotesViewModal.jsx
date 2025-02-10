@@ -1,10 +1,17 @@
 import React, { useState, useRef, useEffect } from "react";
 import Badge from "../ui/Badge";
+import Buffer from "../ui/Buffer";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
+import apiCallWithToken from "../../Functions/Axios";
 
-const NotesViewModal = () => {
+const NotesViewModal = ({
+    chat_id
+}) => {
     const [showNotes, setShowNotes] = useState(false);
+    const [notes, setNotes] = useState("");
+    const [isLoading, setIsLoading] = useState(false)
+
     const modalRef = useRef(null);
     const isNotesBusyState = useSelector((state) => state.store.isNotesBusy);
 
@@ -38,8 +45,23 @@ const NotesViewModal = () => {
         ]
     };
 
+    const getChatNotes = () => {
+        let url = `chat/${chat_id}/notes`
+        let body = {}
+        let method = 'get'
+        let loadingState = setIsLoading
+        const onSuccess = (data) => {
+            setNotes(data?.notes)
+        }
+        const onError = (error) => {
+            console.log(error)
+        }
+        apiCallWithToken(url, body, method, loadingState, onSuccess, onError)
+    }
+
     // Close notes modal when clicking outside
     useEffect(() => {
+        getChatNotes()
         const handleClickOutsideModal = (event) => {
             if (modalRef.current && !modalRef.current.contains(event.target)) {
                 setShowNotes(false);
@@ -71,7 +93,10 @@ const NotesViewModal = () => {
                     </motion.div>
                 ) : (
                     <div
-                        onClick={() => setShowNotes(true)}
+                        onClick={() => {
+                            setShowNotes(true)
+                            getChatNotes()
+                        }}
                         className="cursor-pointer text-sm text-main"
                     >
                         View Notes
@@ -92,18 +117,23 @@ const NotesViewModal = () => {
                         >
                             ✖
                         </button>
-                        <div>
-                            {Object.entries(notesData).map(([category, points]) => (
-                                <div key={category} className="mb-4">
-                                    <h3 className="text-lg font-medium my-2">{category}</h3>
-                                    <ul className="list-disc ml-10 text-sm">
-                                        {points.map((point, index) => (
-                                            <li key={index}>{point}</li>
-                                        ))}
-                                    </ul>
+                        {
+                            isLoading ?
+                                <Buffer isLoading={isLoading} />
+                                :
+                                <div className="overflow-y-auto max-h-[80vh]">
+                                    {Object.entries(notes).map(([category, points]) => (
+                                        <div key={category} className="mb-4">
+                                            <h3 className="text-lg font-medium my-2">{category}</h3>
+                                            <ul className="list-disc ml-10 text-sm">
+                                                {points.map((point, index) => (
+                                                    <li key={index}>{point}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    ))}
                                 </div>
-                            ))}
-                        </div>
+                        }
                     </div>
                 </div>
             )}

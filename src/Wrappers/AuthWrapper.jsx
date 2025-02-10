@@ -11,7 +11,7 @@ function isTokenExpired(token) {
 function AuthWrapper(WrappedComponent) {
 
   const HOC = (props) => {
-    return <WrappedComponent {...props} />;
+    // return <WrappedComponent {...props} />;
     const storedAccessToken = localStorage.getItem('accessToken')
     if (!storedAccessToken || isTokenExpired(storedAccessToken)) {
       return <Redirecting to="/signin" message='Not Signed In, Redirecting to Sign In Page ..' />;

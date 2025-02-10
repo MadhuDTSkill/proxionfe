@@ -3,11 +3,15 @@ import { Link } from "react-router-dom";
 import LOGO from "../../assets/images/proxion.png";
 import Button from "../ui/Button";
 import Title from "../../Title";
+import { getData } from "../../Functions/localStorage";
+import Badge from "../ui/Badge";
 
 const NavLinks = [
     { name: "New Chat", link: "/new-chat" },
     { name: "Notes", link: "/notes" },
 ];
+
+const user = JSON.parse(getData("user") || "{}");
 
 const Header = () => {
     return (
@@ -18,25 +22,17 @@ const Header = () => {
                 <Title />
             </Link>
 
-            {/* Center: Navigation Links */}
-            <nav className="flex space-x-6 rounded-full shadow-sm shadow-gray-500 p-2 px-5 bg-white bg-opacity-5">
-                {NavLinks.map((item) => (
-                    <Link
-                        key={item.name}
-                        to={item.link}
-                        className="text-white text-sm hover:text-gray-400 duration-300 transition"
-                    >
-                        {item.name}
-                    </Link>
-                ))}
-            </nav>
+            {/* Right: User Info or Sign In Button */}
+            {user.first_name && user.last_name ? (
+                <Badge>
+                    <div className="text-main text-sm font-semibold">{`${user.first_name} ${user.last_name}`}</div>
 
-            {/* Right: SignIn Button */}
-            <Button
-                href={''}
-            >
-                <h1 className="text-sm">SignIn</h1>
-            </Button>
+                </Badge>
+            ) : (
+                <Button href="/signin">
+                    <h1 className="text-sm">Sign In</h1>
+                </Button>
+            )}
         </div>
     );
 };

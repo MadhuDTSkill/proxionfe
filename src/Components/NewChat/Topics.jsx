@@ -39,7 +39,10 @@ const Topics = ({ selectedCategory, currentTopics }) => {
                 className={`cursor-pointer flex justify-center items-center transition-all w-80 p-10`}
               >
                 <div className="flex flex-col space-y-5 justify-center items-center">
-                  <img src={CoverImages[topic.name]} alt="Cover Img" className="w-36 h-auto" />
+                  {
+                    CoverImages[topic.name] &&
+                    <img src={CoverImages[topic.name]} alt="Cover Img" className="w-36 h-auto" />
+                  }
                   <h1>{topic.name}</h1>
                   <span className="text-sm text-center">{topic.description}</span>
                 </div>

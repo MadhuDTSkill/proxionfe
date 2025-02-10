@@ -4,7 +4,9 @@ import LOGO from "../../assets/images/proxion.png";
 import Title from '../../Title';
 import NotesViewModal from './NotesViewModal';
 
-const Header = () => {
+const Header = ({
+  chat_id
+}) => {
 
 
   return (
@@ -15,7 +17,10 @@ const Header = () => {
           <Title />
         </Link>
         <div className='flex items-center space-x-2'>
-          <NotesViewModal />
+          {
+            chat_id &&
+            <NotesViewModal chat_id={chat_id} />
+          }
           <ProfileMenu />
         </div>
       </div>

@@ -58,7 +58,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'new-chat',
-        Component: NewChat,
+        Component: AuthWrapper(NewChat),
       },
     ]
   },

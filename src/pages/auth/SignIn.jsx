@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ReactTyped } from 'react-typed'; // Correct import for Typed
 import Title from '../../Title'
 import { apiCall } from '../../Functions/Axios';
-import { setData } from '../../Functions/LocalStorage';
+import { setData, setJsonData } from '../../Functions/LocalStorage';
 import { ImSpinner9 } from "react-icons/im";
 import Card from '../../Components/ui/Card';
 import Button from '../../Components/ui/Button';
@@ -24,11 +24,12 @@ const Signin = () => {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    let url = 'users/login/'
+    let url = 'auth/login'
     let body = formData;
     let method = 'post';
     let loadingState = setIsLoading
     const onSuccess = (data) => {
+      setData('user', JSON.stringify(data.user))
       setData('accessToken', data.token)
       window.location.href = '/'
     }

@@ -27,7 +27,7 @@ const ChatLayout = () => {
       </div>
       <div className='w-full h-full flex flex-col relative space-y-2'>
         <div className='flex-0 border border-gray-700'>
-          <Header isDrawerOpen={isDrawerOpen} toggleDrawer={toggleDrawer} />
+          <Header isDrawerOpen={isDrawerOpen} toggleDrawer={toggleDrawer} chat_id={chat_id} />
         </div>
         <div className='flex-1 overflow-auto border border-gray-700'>
           {
