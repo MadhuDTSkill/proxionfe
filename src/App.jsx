@@ -13,6 +13,7 @@ import ChatLayout from './layouts/ChatLayout';
 import NotFound from './pages/extra/NotFound';
 import RootLayout from './layouts/RootLayout';
 import { useEffect, useState } from 'react';
+import Contexts from './contexts/Contexts';
 
 export default function App() {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -28,19 +29,21 @@ export default function App() {
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
 
-  if (isSmallScreen) {
-    return (
-      <div className="h-screen flex items-center justify-center text-center bg-black text-white p-4">
-        <p className="text-lg font-semibold">
-          This application is not supported on small screens. Please use a desktop or tablet.
-        </p>
-      </div>
-    );
-  }
+  // if (isSmallScreen) {
+  //   return (
+  //     <div className="h-screen flex items-center justify-center text-center bg-black text-white p-4">
+  //       <p className="text-lg font-semibold">
+  //         This application is not supported on small screens. Please use a desktop or tablet.
+  //       </p>
+  //     </div>
+  //   );
+  // }
 
   return (
     <Provider store={Store}>
-      <RouterProvider router={router} />
+      <Contexts>
+        <RouterProvider router={router} />
+      </Contexts>
     </Provider>
   );
 }

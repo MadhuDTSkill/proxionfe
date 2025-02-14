@@ -30,14 +30,14 @@ const ModelResponse = ({
   };
 
   return (
-    <div className="">
+    <div className="bg-bg2/30 rounded-lg">
       <h1 className="font-semibold max-w-3xl text-sm mx-auto my-2">
         <Title />
       </h1>
       <div className="hover:bg-opacity-10 bg-opacity-5 p-2">
         <div className="max-w-3xl mx-auto">
           {isLoading ? (
-            <motion.div className="text-lg font-semibold text-main flex space-x-1">
+            <motion.div className="text-lg font-semibold text-white flex flex-wrap space-x-1">
               {waitingMessage?.content?.split("").map((char, i) => (
                 <motion.span
                   key={i}

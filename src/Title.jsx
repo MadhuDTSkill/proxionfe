@@ -4,7 +4,7 @@ const Title = ({
   flag
 }) => {
   return (
-    <span className={flag ? '' : 'zero'}>Proxion</span>
+    <span className={'text-gray-300 font-semibold text-lg'}>Proxion</span>
   )
 }
 

@@ -9,10 +9,10 @@ const RightSidebar = ({ isDrawerOpen, toggleDrawer }) => {
             {/* Sidebar Container */}
             <div
                 className={`fixed md:relative top-0 right-0 h-full bg-background2 text-foreground2 transform transition-all duration-500 z-10 md:z-0 
-                    ${isDrawerOpen ? 'w-64 lg:w-64 translate-x-0' : 'w-0 translate-x-full'}`}
+                    ${isDrawerOpen ? 'w-80 lg:w-64 translate-x-0' : 'w-0 translate-x-full'}`}
             >
                 <div
-                    className={`flex flex-col space-y-1 h-full relative transition-all transform duration-500 
+                    className={`bg-bg2 flex flex-col space-y-1 h-full relative transition-all transform duration-500 
                         ${isDrawerOpen ? 'opacity-100 visibility-visible translate-x-0' : 'opacity-0 visibility-hidden pointer-events-none translate-x-full'}`}
                 >
                     <Header />

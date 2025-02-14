@@ -15,6 +15,7 @@ const Menu = () => {
         <div className="flex-1 flex flex-col justify-center gap-3 bg-bg2 text-gray-300 rounded-lg w-full">
             <MenuItem icon={''} label="Proxion" onClick={handleClick} />
             <MenuItem icon={''} label="AI Agents" onClick={handleClick} />
+            <MenuItem icon={''} label="Notes" onClick={handleClick} />
             <Line />
             <MenuItem icon={<FaQuestionCircle size={16} />} label="Guide & FAQ" onClick={handleClick} />
             <MenuItem icon={<FaCommentSlash size={16} />} label="Clear Conversations" onClick={handleClick} />

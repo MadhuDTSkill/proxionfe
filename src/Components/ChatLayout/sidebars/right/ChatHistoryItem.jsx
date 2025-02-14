@@ -70,7 +70,7 @@ const ChatHistoryItem = ({ chat, onDelete, onCurrentFlagUpdate }) => {
 
             {/* Dropdown Options */}
             {isDropdownOpen && (
-                <div className="mt-2 bg-gray-800 p-2 rounded-md shadow-lg">
+                <div className="mt-2 bg-bg p-2 rounded-md shadow-lg">
                     <div className="flex items-center gap-2 hover:bg-gray-700 p-2 rounded-md cursor-pointer">
                         <TbNotes className="text-lg" />
                         <span>Notes</span>

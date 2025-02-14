@@ -14,7 +14,7 @@ const Message = ({
 }) => {
   return (
     <div>
-      <div className=' md:p-4'>
+      <div className='px-4 md:p-0'>
         <UserMessage message={message} />
         <ModelResponse
           isLoading={isLoading}
@@ -28,7 +28,7 @@ const Message = ({
       <div className='h-10 max-w-3xl mx-auto py-2'>
         {
           showMenu && (
-            <div className='duration-300 transition'>
+            <div className='flex jsustify-end px-4 md:px-1 duration-300 transition'>
               <MessageMenu message={message.response} />
             </div>
           )

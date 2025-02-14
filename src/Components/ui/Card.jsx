@@ -12,7 +12,7 @@ const Card = ({
             className={
                 (className
                     ? className
-                    : ` bg-main ${!fill && 'bg-opacity-5'} p-4 transition duration-300 ease-in-out transform hover:scale-[1.02] hover:border-main hover:shadow-lg`
+                    : ` bg-bg border shadow rounded-lg ${!fill && 'bg-opacity-5'} p-4 transition duration-300 ease-in-out transform hover:scale-[1.02] hover:border-main hover:shadow-lg`
                 ) +
                 " " +
                 (extraClassName || "")

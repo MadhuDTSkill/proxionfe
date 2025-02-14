@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { FaPaperPlane, FaFileImage, FaFileAlt, FaFilePdf, FaFileWord } from 'react-icons/fa';
+import { IoMdSend } from "react-icons/io";
 import { RiAttachmentLine } from "react-icons/ri";
 import { IoMdCloseCircle } from 'react-icons/io';
 import Footer from '../../ChatLayout/Footer';
@@ -164,17 +165,17 @@ const Prompt = ({ setStaticPrompt, setPrompt, prompt, onSubmit, isLoading, isTyp
             rows={rows}
             placeholder="Message to Proxion..."
             maxLength={8000}
-            className={`pl-12 pr-12 p-3 w-full max-h-52 bg-transparent outline-none `}
+            className={`pl-12 pr-12 p-3 w-full max-h-52 bg-transparent outline-bg ring-bg ring-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-main focus:ring-offset-2 focus:ring-offset-bg ${isTyping ? 'animate-pulse' : ''}`}
             style={{ resize: 'none', overflow: 'hidden' }}
           />
 
           {/* Right Icon */}
           <button
             type="submit"
-            className="absolute right-0 rounded-full p-2.5 m-1"
+            className="absolute right-0 rounded-full m-1"
             disabled={prompt?.trim() === '' || isLoading || isUploadingFile || isTyping}
           >
-            <FaPaperPlane className="" size={20} />
+            <IoMdSend className="bg-main p-2 rounded-lg" size={37} />
           </button>
         </div>
       </form>

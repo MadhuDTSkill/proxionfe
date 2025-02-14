@@ -6,10 +6,7 @@ const instanceWithToken = axios.create({
   baseURL: "http://localhost:8000/api/",
   timeout: 60000,
   headers: {
-    Authorization: `Bearer ${
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uX2tleSI6IjQ1ZXEzeXBuN3JxNDNnMWswYnRibWEyNTQ2NTJ2cjlsIiwiZXhwIjoxNzM5MjI1MDQyfQ.x5P2frNDxrh3MccAY3zleei_GZs5g0Zvgyy7JZEwR1E" ||
-      getData("accessToken")
-    }`,
+    Authorization: `Bearer ${getData("accessToken")}`,
   },
 });
 

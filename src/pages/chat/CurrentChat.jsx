@@ -4,6 +4,7 @@ import Messages from "../../Components/CurrentChat/Messages/Messages";
 import Prompt from "../../Components/CurrentChat/Prompt/Prompt";
 import { useLocation } from "react-router-dom";
 import { PiSpinnerGap } from "react-icons/pi";
+import { getData } from "../../Functions/localStorage";
 
 const CurrentChat = ({
   isConnected,
@@ -47,7 +48,8 @@ const CurrentChat = ({
     setPrompt("");
     sendPrompt({
       prompt: {
-        content: tempPrompt || prompt
+        content: tempPrompt || prompt,
+        mode: getData("selectedMode") || "Casual",
       },
     });
   };

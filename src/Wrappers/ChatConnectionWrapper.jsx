@@ -55,7 +55,7 @@ const ChatConnectionWrapper = (WrappedComponent) => {
         };
 
         const setupWebSocket = () => {
-            ws.current = ws.current || new WebSocket(`ws://127.0.0.1:8000/ws/chat/${chat_id}?token=${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uX2tleSI6IjQ1ZXEzeXBuN3JxNDNnMWswYnRibWEyNTQ2NTJ2cjlsIiwiZXhwIjoxNzM5MjI1MDQyfQ.x5P2frNDxrh3MccAY3zleei_GZs5g0Zvgyy7JZEwR1E"}`);
+            ws.current = ws.current || new WebSocket(`ws://127.0.0.1:8000/ws/chat/${chat_id}?token=${token}`);
 
             ws.current.onopen = () => {
                 setIsConnected(true);

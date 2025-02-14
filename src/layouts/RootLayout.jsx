@@ -7,7 +7,7 @@ const RootLayout = () => {
       className="flex flex-col p-1 h-dvh bg-bg overflow-auto relative text-sm"
     >
       <div className="flex-1 w-full flex flex-col h-full overflow-auto relative z-10">
-        {/* <Outlet /> */}
+        <Outlet />
       </div>
     </div>
   );

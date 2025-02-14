@@ -13,10 +13,10 @@ const LeftSidebar = ({
     return (
         <>
             <div
-                className={`fixed md:relative top-0 left-0 h-full transform transition-all duration-500 z-10 md:z-0 ${isDrawerOpen ? 'w-64 lg:w-64' : 'w-0 -translate-x-full'}`}
+                className={`fixed md:relative top-0 left-0 h-full transform transition-all duration-500 z-10 md:z-0 ${isDrawerOpen ? 'w-80 lg:w-64' : 'w-0 -translate-x-full'}`}
             >
                 <div
-                    className={`flex flex-col space-y-1 h-full p-5 relative transition-all transform duration-500 ${isDrawerOpen ? 'opacity-100 visibility-visible translate-x-0' : 'opacity-0 visibility-hidden pointer-events-none -translate-x-full'}`}
+                    className={`bg-bg2 flex flex-col space-y-1 h-full p-5 relative transition-all transform duration-500 ${isDrawerOpen ? 'opacity-100 visibility-visible translate-x-0' : 'opacity-0 visibility-hidden pointer-events-none -translate-x-full'}`}
                 >
                     <Header />
                     <Line />
