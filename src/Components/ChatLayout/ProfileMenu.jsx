@@ -35,7 +35,7 @@ const ProfileMenu = () => {
     <div className="relative" ref={menuRef}>
       {/* Profile Icon (Trigger) */}
       <div
-        className="w-8 h-8 rounded-full flex items-center justify-center text-white bg-primary cursor-pointer"
+        className="w-8 h-8 rounded-full flex items-center justify-center text-white bg-main cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}
       >
         M
@@ -48,7 +48,7 @@ const ProfileMenu = () => {
             <ul className="">
               {/* Settings Option */}
               <li
-                className="flex items-center p-2 rounded-lg hover:bg-primary cursor-pointer"
+                className="flex items-center p-2 rounded-lg hover:bg-main cursor-pointer"
                 onClick={handleSettingsRedirect} // Redirect to settings
               >
                 <FiSettings className="mr-2" />
@@ -57,7 +57,7 @@ const ProfileMenu = () => {
 
               {/* Logout Option */}
               <li
-                className="flex items-center p-2 rounded-lg hover:bg-primary cursor-pointer"
+                className="flex items-center p-2 rounded-lg hover:bg-main cursor-pointer"
                 onClick={handleLogout} // Logout and redirect
               >
                 <FiLogOut className="mr-2" />

@@ -8,7 +8,7 @@ import Button from '../ui/Button';
 
 const Welcome = () => {
     return (
-        <div className="p-4 h-full flex flex-col items-center overflow-auto border border-gray-700">
+        <div className="p-4 h-full flex flex-col items-center overflow-auto ">
 
             {/* Title and Encouragement */}
             <div className='mt-36'>

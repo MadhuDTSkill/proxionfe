@@ -15,7 +15,7 @@ const user = JSON.parse(getData("user") || "{}");
 
 const Header = () => {
     return (
-        <div className="flex items-center justify-between py-3 px-6 border border-gray-700">
+        <div className="flex items-center justify-between py-3 px-6 ">
             {/* Left: Logo */}
             <Link to="/" className="flex items-center">
                 <img src={LOGO} alt="Proxion Logo" className="h-10 w-auto" />

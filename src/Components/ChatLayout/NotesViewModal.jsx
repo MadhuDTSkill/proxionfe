@@ -108,7 +108,7 @@ const NotesViewModal = ({
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                     <div
                         ref={modalRef}
-                        className="bg-primary p-6 rounded-lg shadow-lg w-[800px] max-h-[90vh] overflow-y-auto relative"
+                        className="bg-main p-6 rounded-lg shadow-lg w-[800px] max-h-[90vh] overflow-y-auto relative"
                     >
                         <h2 className="text-xl font-semibold mb-4 text-center">Notes</h2>
                         <button

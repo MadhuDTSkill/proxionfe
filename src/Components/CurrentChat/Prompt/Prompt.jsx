@@ -164,7 +164,7 @@ const Prompt = ({ setStaticPrompt, setPrompt, prompt, onSubmit, isLoading, isTyp
             rows={rows}
             placeholder="Message to Proxion..."
             maxLength={8000}
-            className={`pl-12 pr-12 p-3 w-full max-h-52 bg-transparent outline-none border border-gray-700`}
+            className={`pl-12 pr-12 p-3 w-full max-h-52 bg-transparent outline-none `}
             style={{ resize: 'none', overflow: 'hidden' }}
           />
 

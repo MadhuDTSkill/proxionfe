@@ -28,7 +28,7 @@ const Topics = ({ selectedCategory, currentTopics }) => {
 
 
   return (
-    <div className="p-4 h-full flex flex-col items-center overflow-auto border border-gray-700 lg:w-[80%] md:w-[70%]">
+    <div className="p-4 h-full flex flex-col items-center overflow-auto  lg:w-[80%] md:w-[70%]">
       <Buffer isLoading={isLoading} message={"Creating Chat..."} />
       <div className="flex flex-col justify-center items-center h-full w-full p-5">
         <div className="p-10 flex space-x-12 overflow-x-auto scroll-smooth w-full">

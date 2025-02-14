@@ -1,6 +1,6 @@
 *::-webkit-scrollbar {
-  width: 0px;
-  height: 0px;
+  width: 3px;
+  height: 2px;
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.1);
   scroll-behavior: smooth;
@@ -11,7 +11,7 @@
 }
 
 *::-webkit-scrollbar-thumb {
-  @apply bg-gradient-to-t from-primary to-primary;
+  @apply bg-gradient-to-t from-main to-main;
 }
 
 .zero {
@@ -48,7 +48,7 @@ strong {
   /* Adjust the opacity value as needed */
 }
 
-.border-primary {
+.border-mains {
   @apply border-main !important;
 }
 
@@ -116,7 +116,7 @@ pre {
 }
 
 .llm-response {
-  @apply text-gray-400 text-sm leading-relaxed !important;
+  @apply text-sm leading-relaxed !important;
 }
 
 /* Headings */
@@ -162,7 +162,7 @@ pre {
 
 /* Blockquotes */
 .llm-response blockquote {
-  @apply border-l-4 border-main pl-3 italic text-gray-400 !important;
+  @apply border-l-4 border-main pl-3 italic  !important;
 }
 
 /* Links */

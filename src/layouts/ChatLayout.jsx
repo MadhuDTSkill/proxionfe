@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Outlet, useParams } from 'react-router-dom';
 import LeftSidebar from '../Components/ChatLayout/sidebars/left/LeftSidebar';
+import RightSidebar from '../Components/ChatLayout/sidebars/right/RightSidebar';
 import Header from '../Components/ChatLayout/Header';
 import { ReactTyped } from 'react-typed';
 import Title from '../Title';
-import BG from '../assets/images/bg4.png'
 
 const ChatLayout = () => {
 
@@ -15,21 +15,17 @@ const ChatLayout = () => {
   };
 
   return (
-    <div className='relative flex p-2 w-full h-dvh bg-cover font-main bg-center bg-no-repeat bg-gradient-to-r from-[#030014] via-[#0d0725] to-[#030014] text-gray-300 overflow-auto space-x-2'
-      style={{
-        backgroundImage: `url(${BG})`,
-        backgroundBlendMode: "darken"
-      }}
+    <div className='relative flex w-full bg-black h-dvh overflow-hidden text-sm text-white'
     >
-      <div className="absolute inset-0 bg-black opacity-30"></div>
-      <div className={`${isDrawerOpen ? 'border border-gray-700' : ''}`}>
+      <div className={`bg-bg2 ${isDrawerOpen ? '' : ''}`}>
         <LeftSidebar isDrawerOpen={isDrawerOpen} toggleDrawer={toggleDrawer} />
       </div>
-      <div className='w-full h-full flex flex-col relative space-y-2'>
-        <div className='flex-0 border border-gray-700'>
+      <div className='w-full h-dvh bg-bg flex flex-col'>
+        <div className='flex-0 '>
           <Header isDrawerOpen={isDrawerOpen} toggleDrawer={toggleDrawer} chat_id={chat_id} />
         </div>
-        <div className='flex-1 overflow-auto border border-gray-700'>
+        <div className='flex-1 overflow-auto'>
+          <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 w-[60%] h-72 bg-main opacity-10 blur-3xl rounded-full" />
           {
             chat_id ?
               <Outlet />
@@ -54,6 +50,9 @@ const ChatLayout = () => {
               </div>
           }
         </div>
+      </div>
+      <div className={`bg-bg2 ${isDrawerOpen ? '' : ''}`}>
+        <RightSidebar isDrawerOpen={isDrawerOpen} toggleDrawer={toggleDrawer} />
       </div>
     </div>
   )

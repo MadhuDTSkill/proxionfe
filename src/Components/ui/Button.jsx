@@ -19,9 +19,8 @@ const Button = ({
         <button
             className={`
                 ${className || "relative inline-flex items-center justify-center"}
-                px-6 py-2 font-semibold text-main text-sm 
-                bg-gradient-to-r from-primary via-[#3e3760] to-primary
-                border border-[#bfb7e5] shadow-md shadow-[#2a243f]
+                bg-main text-white rounded-lg
+                px-6 py-2 font-semibold text-sm 
                 transition-all duration-300 ease-in-out
                 hover:shadow-lg hover:shadow-[#463b69]
                 active:scale-95

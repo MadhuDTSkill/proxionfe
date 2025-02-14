@@ -14,7 +14,7 @@ const Message = ({
 }) => {
   return (
     <div>
-      <div className='border border-gray-700 md:p-4'>
+      <div className=' md:p-4'>
         <UserMessage message={message} />
         <ModelResponse
           isLoading={isLoading}

@@ -12,9 +12,7 @@ import SignIn from './pages/auth/SignIn';
 import ChatLayout from './layouts/ChatLayout';
 import NotFound from './pages/extra/NotFound';
 import RootLayout from './layouts/RootLayout';
-import Root from './pages/common/Root';
 import { useEffect, useState } from 'react';
-import Chats from './pages/chat/Chats';
 
 export default function App() {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -50,29 +48,11 @@ export default function App() {
 const router = createBrowserRouter([
   {
     path: '/',
-    Component: RootLayout,
-    children: [
-      {
-        index: true,
-        Component: Root
-      },
-      {
-        path: 'new-chat',
-        Component: AuthWrapper(NewChat),
-      },
-    ]
-  },
-  {
-    path: '/',
     Component: AuthWrapper(ChatLayout),
     children: [
       {
         index: true,
-        Component: RootLayout
-      },
-      {
-        path: 'chats',
-        Component: Chats,
+        Component: AuthWrapper(NewChat)
       },
       {
         path: 'chats/:chat_id',
