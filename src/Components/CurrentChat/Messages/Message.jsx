@@ -7,6 +7,7 @@ const Message = ({
   message,
   addMessage,
   scrollCallBack,
+  inView,
   isLoading,
   isTyping,
   waitingMessage,
@@ -21,6 +22,7 @@ const Message = ({
           isTyping={isTyping}
           message={message}
           addMessage={addMessage}
+          inView={inView}
           scrollCallBack={scrollCallBack}
           waitingMessage={waitingMessage}
         />

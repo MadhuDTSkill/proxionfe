@@ -34,6 +34,7 @@ const Messages = ({
           <Message
             message={latestMessageState}
             addMessage={addMessage}
+            inView={inView}
             scrollCallBack={scrollCallBack}
             isTyping={isTyping}
           />

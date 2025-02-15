@@ -37,7 +37,7 @@ const ModelResponse = ({
       <div className="hover:bg-opacity-10 bg-opacity-5 p-2">
         <div className="max-w-3xl mx-auto">
           {isLoading ? (
-            <motion.div className="text-lg font-semibold text-gray-300 flex flex-wrap space-x-1">
+            <motion.div className="text-lg font-semibold text-white flex flex-wrap space-x-1">
               {waitingMessage?.content?.split("").map((char, i) => (
                 <motion.span
                   key={i}

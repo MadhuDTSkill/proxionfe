@@ -13,24 +13,50 @@ const CurrentChat = ({
   isTyping,
   sendPrompt,
   messages,
-  addMessage
+  addMessage,
 }) => {
   const location = useLocation();
   const [prompt, setPrompt] = useState("");
   const [staticPrompt, setStaticPrompt] = useState("");
   const messageContainerRef = useRef(null);
-
-
+  const [allowAutoScroll, setAllowAutoScroll] = useState(true);
 
   const scrollToBottom = () => {
-    const ele = document.getElementById("message-bottom");
-    if (ele) {
-      ele.scrollIntoView({ behavior: "smooth" });
+    if (allowAutoScroll) {
+      const ele = document.getElementById("message-bottom");
+      if (ele) {
+        ele.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 
+  const handleUserScroll = () => {
+    if (messageContainerRef.current) {
+      const { scrollTop, scrollHeight, clientHeight } = messageContainerRef.current;
 
-  // Scroll to bottom when messages load or change
+      // If user scrolls up, disable auto-scroll
+      if (scrollTop + clientHeight < scrollHeight - 10) {
+        setAllowAutoScroll(false);
+      } else {
+        setAllowAutoScroll(true); // Re-enable auto-scroll if user scrolls to bottom
+      }
+    }
+  };
+
+  // Attach scroll event listener
+  useEffect(() => {
+    const messageContainer = messageContainerRef.current;
+    if (messageContainer) {
+      messageContainer.addEventListener("scroll", handleUserScroll);
+    }
+    return () => {
+      if (messageContainer) {
+        messageContainer.removeEventListener("scroll", handleUserScroll);
+      }
+    };
+  }, []);
+
+  // Scroll to bottom when messages update (only if auto-scroll is enabled)
   useEffect(() => {
     scrollToBottom();
   }, [messages, isLoading]);
@@ -56,7 +82,12 @@ const CurrentChat = ({
 
   return (
     <div className="h-full flex flex-col z-50">
-      <div id="messages" className="flex-1 overflow-auto md:p-3" style={{ scrollBehavior: 'smooth' }} ref={messageContainerRef}>
+      <div
+        id="messages"
+        className="flex-1 overflow-auto md:p-3"
+        style={{ scrollBehavior: "smooth" }}
+        ref={messageContainerRef}
+      >
         {isMessagesLoading ? (
           <div className="h-full animate-pulse flex justify-center items-center text-main">
             <PiSpinnerGap size={30} className="text-center text-main animate-spin" />
