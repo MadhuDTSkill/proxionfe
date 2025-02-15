@@ -5,6 +5,7 @@ import { CiChat1 } from "react-icons/ci";
 import { useNavigate, useParams } from 'react-router-dom';
 import { ReactTyped } from 'react-typed';
 import DeleteModal from './DeleteModal';
+import { MessageSquareText } from 'lucide-react';
 
 const ChatHistoryItem = ({ chat, onDelete, onCurrentFlagUpdate }) => {
     const nav = useNavigate();
@@ -41,7 +42,7 @@ const ChatHistoryItem = ({ chat, onDelete, onCurrentFlagUpdate }) => {
             >
                 {/* Chat Icon (3 columns) */}
                 <div className="col-span-2 flex justify-center">
-                    <CiChat1 className="text-xl" />
+                    <MessageSquareText className="" size={22} />
                 </div>
 
                 {/* Chat Name and Created Date (6 columns, flex-col) */}

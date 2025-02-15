@@ -7,7 +7,7 @@ import { getData } from "../../Functions/localStorage";
 import Badge from "../ui/Badge";
 
 const NavLinks = [
-    { name: "New Chat", link: "/new-chat" },
+    { name: "New Chat", link: "/" },
     { name: "Notes", link: "/notes" },
 ];
 

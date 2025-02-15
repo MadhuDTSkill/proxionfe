@@ -31,7 +31,7 @@ export default function App() {
 
   // if (isSmallScreen) {
   //   return (
-  //     <div className="h-screen flex items-center justify-center text-center bg-black text-white p-4">
+  //     <div className="h-screen flex items-center justify-center text-center bg-black text-gray-300 p-4">
   //       <p className="text-lg font-semibold">
   //         This application is not supported on small screens. Please use a desktop or tablet.
   //       </p>
@@ -55,7 +55,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        Component: AuthWrapper(NewChat)
+        Component: NewChat
       },
       {
         path: 'chats/:chat_id',

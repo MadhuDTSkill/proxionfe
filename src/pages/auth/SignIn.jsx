@@ -104,7 +104,7 @@ const Signin = () => {
                   extraClassName="w-full"
                 >
                   {isLoading ? (
-                    <ImSpinner9 className="animate-spin text-white mx-auto" />
+                    <ImSpinner9 className="animate-spin text-gray-300 mx-auto" />
                   ) : (
                     'Sign In'
                   )}

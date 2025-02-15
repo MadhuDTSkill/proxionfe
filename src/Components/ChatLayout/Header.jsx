@@ -18,10 +18,10 @@ const Header = ({
           <Title />
         </Link>
         <div className='flex items-center md:space-x-2'>
+          <Mode />
           {
             chat_id &&
             <>
-              <Mode />
               <NotesViewModal chat_id={chat_id} />
             </>
           }

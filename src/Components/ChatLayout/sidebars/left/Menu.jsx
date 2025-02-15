@@ -1,45 +1,57 @@
 import React from "react";
-import { FaRobot, FaCogs, FaQuestionCircle, FaCommentSlash, FaRocket, FaBell, FaCog, FaSignOutAlt } from "react-icons/fa";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { HelpCircle, MessageSquareOff, Rocket, Bell, Settings2, LogOut } from "lucide-react";
 import Line from "../../../ui/Line";
-import LOGO from "../../../../assets/images/proxion.png";
-
 
 const Menu = () => {
-    // Dummy function to simulate click events
-    const handleClick = (label) => {
-        console.log(`${label} clicked!`);
-        alert(`${label} clicked!`);
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    // Handle logout
+    const handleLogout = () => {
+        localStorage.clear();
+        navigate("/signin");
     };
 
     return (
         <div className="flex-1 flex flex-col justify-center gap-3 bg-bg2 text-gray-300 rounded-lg w-full">
-            <MenuItem icon={''} label="Proxion" onClick={handleClick} />
-            <MenuItem icon={''} label="AI Agents" onClick={handleClick} />
-            <MenuItem icon={''} label="Notes" onClick={handleClick} />
+            <MenuItem to="/" label="Proxion" currentPath={location.pathname} />
+            <MenuItem to="/ai-agents" label="AI Agents" currentPath={location.pathname} />
+            <MenuItem to="/notes" label="Notes" currentPath={location.pathname} />
             <Line />
-            <MenuItem icon={<FaQuestionCircle size={16} />} label="Guide & FAQ" onClick={handleClick} />
-            <MenuItem icon={<FaCommentSlash size={16} />} label="Clear Conversations" onClick={handleClick} />
+            <MenuItem icon={<HelpCircle size={18} />} label="Guide & FAQ" />
+            <MenuItem icon={<MessageSquareOff size={18} />} label="Clear Conversations" />
             <Line />
-            <MenuItem icon={<FaRocket size={16} />} label="Upgrade" onClick={handleClick} />
-            <MenuItem icon={<FaBell size={16} />} label="Notifications" onClick={handleClick} />
-            <MenuItem icon={<FaCog size={16} />} label="Setting" onClick={handleClick} />
+            <MenuItem icon={<Rocket size={18} />} label="Upgrade" />
+            <MenuItem icon={<Bell size={18} />} label="Notifications" />
+            <MenuItem icon={<Settings2 size={18} />} label="Setting" />
             <Line />
-            <MenuItem icon={<FaSignOutAlt size={16} className="text-red-500" />} label="Logout" isLogout onClick={handleClick} />
+            <MenuItem
+                icon={<LogOut size={18} className="text-red-500" />}
+                label="Logout"
+                isLogout
+                onClick={handleLogout}
+            />
         </div>
     );
 };
 
-const MenuItem = ({ icon, label, isLogout, onClick }) => {
-    return (
+const MenuItem = ({ to, icon, label, isLogout, onClick, currentPath }) => {
+    const isActive = to && currentPath === to;
+
+    const content = (
         <div
-            className={`flex items-center gap-3 p-2 cursor-pointer rounded-md transition ${isLogout ? "text-red-500 " : "hover:bg-main"
-                }`}
-            onClick={() => onClick(label)} // Call the function on click
+            className={`flex items-center gap-3 p-2 cursor-pointer rounded-md transition 
+                ${isActive ? "bg-main text-gray-300" : "hover:bg-main"} 
+                ${isLogout ? "text-red-500" : ""}`}
+            onClick={onClick}
         >
-            <span className="text-base">{icon}</span>
+            {icon && <span className="text-base">{icon}</span>}
             <span className={`text-base ${isLogout ? "text-red-500 font-medium" : ""}`}>{label}</span>
         </div>
     );
+
+    return to ? <Link to={to}>{content}</Link> : content;
 };
 
 export default Menu;

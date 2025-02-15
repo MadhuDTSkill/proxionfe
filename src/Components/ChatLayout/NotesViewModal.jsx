@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
-import Badge from "../ui/Badge";
 import Buffer from "../ui/Buffer";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
+import { NotebookPen } from 'lucide-react'
 import { IoDocumentTextOutline, IoClose } from "react-icons/io5";
 import apiCallWithToken from "../../Functions/Axios";
 
@@ -58,8 +58,8 @@ const NotesViewModal = ({ chat_id }) => {
         <div className="flex justify-center items-center overflow-hidden">
             {isNotesBusyState ? (
                 <div className="flex items-center space-x-2 cursor-pointer p-2 text-main">
-                    <IoDocumentTextOutline
-                        size={25}
+                    <NotebookPen
+                        size={17}
                         className="cursor-pointer text-main"
                         title="Auto Notes"
                         onClick={() => {
@@ -84,8 +84,8 @@ const NotesViewModal = ({ chat_id }) => {
                 </div>
             ) : (
                 <div className="flex items-center space-x-2 cursor-pointer p-2 text-main">
-                    <IoDocumentTextOutline
-                        size={25}
+                    <NotebookPen
+                        size={17}
                         className="cursor-pointer text-main"
                         title="Auto Notes"
                         onClick={() => {
@@ -105,7 +105,7 @@ const NotesViewModal = ({ chat_id }) => {
                     >
                         <h2 className="text-xl font-semibold mb-4 text-center">Notes</h2>
                         <button
-                            className="absolute top-2 right-2 text-white"
+                            className="absolute top-2 right-2 text-gray-300"
                             onClick={() => setShowNotes(false)}
                         >
                             <IoClose size={22} />

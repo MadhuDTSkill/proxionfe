@@ -35,7 +35,7 @@ const ProfileMenu = () => {
     <div className="relative" ref={menuRef}>
       {/* Profile Icon (Trigger) */}
       <div
-        className="w-8 h-8 rounded-full flex items-center justify-center text-white bg-main cursor-pointer"
+        className="w-8 h-8 rounded-full flex items-center justify-center text-gray-300 bg-main cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}
       >
         M

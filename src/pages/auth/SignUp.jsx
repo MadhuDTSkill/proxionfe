@@ -157,7 +157,7 @@ const Signup = () => {
                 >
                   {
                     isLoading ? (
-                      <ImSpinner9 className="animate-spin text-white text-2xl" />
+                      <ImSpinner9 className="animate-spin text-gray-300 text-2xl" />
                     ) : (
                       <span>Sign Up</span>
                     )

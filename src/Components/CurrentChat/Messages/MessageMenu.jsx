@@ -21,7 +21,7 @@ const stripMarkdown = (markdown) => {
 
 const MessageMenu = ({ message }) => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
-  const [copyIcon, setCopyIcon] = useState(<MdContentCopy size={17} className='hover:text-white hover:p-1 rounded' />);
+  const [copyIcon, setCopyIcon] = useState(<MdContentCopy size={17} className='hover:text-gray-300 hover:p-1 rounded' />);
   const [isSpeaking, setIsSpeaking] = useState(false);
 
   // Function to handle speech synthesis (text-to-speech)
@@ -53,13 +53,13 @@ const MessageMenu = ({ message }) => {
             // Change the icon to 'Copied' state
             setCopyIcon(<span className='text-main'>Copied!</span>);
             // Reset the icon after 2 seconds
-            setTimeout(() => setCopyIcon(<MdContentCopy size={17} className=' hover:text-white hover:p-1 rounded' />), 3000);
+            setTimeout(() => setCopyIcon(<MdContentCopy size={17} className=' hover:text-gray-300 hover:p-1 rounded' />), 3000);
           })
           .catch((err) => console.error('Failed to copy: ', err));
       }
     },
     {
-      icon: <MdRefresh size={20} className=' hover:text-white hover:p-1 rounded' />,
+      icon: <MdRefresh size={20} className=' hover:text-gray-300 hover:p-1 rounded' />,
       title: 'Refresh',
       action: () => {
         // Implement refresh logic here
@@ -67,7 +67,7 @@ const MessageMenu = ({ message }) => {
       }
     },
     {
-      icon: <MdSaveAlt size={20} className=' hover:text-white hover:p-1 rounded' />,
+      icon: <MdSaveAlt size={20} className=' hover:text-gray-300 hover:p-1 rounded' />,
       title: 'Save as Markdown',
       action: () => {
         const blob = new Blob([message], { type: 'text/markdown' });
@@ -80,7 +80,7 @@ const MessageMenu = ({ message }) => {
       }
     },
     {
-      icon: isSpeaking ? <MdStop size={20} className=' hover:text-white hover:p-1 rounded' /> : <MdPlayArrow size={20} className=' hover:text-white hover:p-1 rounded' />,
+      icon: isSpeaking ? <MdStop size={20} className=' hover:text-gray-300 hover:p-1 rounded' /> : <MdPlayArrow size={20} className=' hover:text-gray-300 hover:p-1 rounded' />,
       title: isSpeaking ? 'Stop Speaking' : 'Play',
       action: isSpeaking ? stopSpeaking : startSpeaking // Toggle between starting and stopping speech
     }
@@ -98,7 +98,7 @@ const MessageMenu = ({ message }) => {
         >
           {item.icon}
           {hoveredIndex === index && (
-            <span className='absolute top-4 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs rounded p-1 mt-2'>
+            <span className='absolute top-4 left-1/2 transform -translate-x-1/2 bg-gray-800 text-gray-300 text-xs rounded p-1 mt-2'>
               {item.title}
             </span>
           )}

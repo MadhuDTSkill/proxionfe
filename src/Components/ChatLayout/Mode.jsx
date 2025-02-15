@@ -46,11 +46,11 @@ const Mode = () => {
             </div>
 
             {isOpen && (
-                <div className="absolute top-full mt-2 border shadow-md rounded-md w-40 p-2 z-10 bg-bg">
+                <div className="absolute top-full right-0 mt-2 border shadow-md rounded-md w-40 p-2 z-10 bg-bg">
                     {MODES.map((mode) => (
                         <div
                             key={mode}
-                            className={`p-2 text-sm cursor-pointer rounded-md ${selectedMode === mode ? "bg-main text-white" : "hover:bg-main/50"
+                            className={`p-2 text-sm cursor-pointer rounded-md ${selectedMode === mode ? "bg-main text-gray-300" : "hover:bg-main/50"
                                 }`}
                             onClick={() => handleModeSelect(mode)}
                         >

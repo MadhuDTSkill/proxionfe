@@ -6,143 +6,113 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { PiSpinnerGapBold } from "react-icons/pi";
 
 const ChatHistory = () => {
-
-    const { chat_id } = useParams()
+    const { chat_id } = useParams();
     const chatsRefreshState = useSelector((state) => state.store.chatsRefresh);
-    const nav = useNavigate()
-    const [chats, setChats] = React.useState({});
-    const [isLoading, setIsLoading] = useState(false)
+    const nav = useNavigate();
+    const [chats, setChats] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
 
     const getChats = () => {
-        let url = 'chat/chats'
-        let body = {}
-        let method = 'get'
-        let loadingState = setIsLoading
+        let url = 'chat/chats';
+        let body = {};
+        let method = 'get';
+        let loadingState = setIsLoading;
         const onSuccess = (data) => {
-            setChats(data)
-        }
+            setChats(data);
+        };
         const onError = (error) => {
-            console.log(error)
-        }
-        apiCallWithToken(url, body, method, loadingState, onSuccess, onError)
-    }
+            console.log(error);
+        };
+        apiCallWithToken(url, body, method, loadingState, onSuccess, onError);
+    };
 
     const updateCurrentChatFlag = (chat_id) => {
-        let url = `chat/chats/${chat_id}/`
-        let body = {
-            is_new: false
-        }
-        let method = 'patch'
-        let loadingStatge = null
-        const onSuccess = (response) => {
-            getChats()
-        }
+        let url = `chat/chats/${chat_id}/`;
+        let body = { is_new: false };
+        let method = 'patch';
+        let loadingState = null;
+        const onSuccess = () => {
+            getChats();
+        };
         const onError = (error) => {
-            console.log(error)
-        }
-        apiCallWithToken(url, body, method, loadingStatge, onSuccess, onError)
-    }
+            console.log(error);
+        };
+        apiCallWithToken(url, body, method, loadingState, onSuccess, onError);
+    };
 
     const deleteChat = (chat_id) => {
-        let url = `chat/chats/${chat_id}/`
-        let body = {}
-        let method = 'delete'
-        let loadingState = setIsLoading
-        const onSuccess = (data) => {
-            getChats()
-            nav('/chats')
-        }
+        let url = `chat/chats/${chat_id}/`;
+        let body = {};
+        let method = 'delete';
+        let loadingState = setIsLoading;
+        const onSuccess = () => {
+            getChats();
+            nav('/chats');
+        };
         const onError = (error) => {
-            console.log(error)
-        }
-        apiCallWithToken(url, body, method, loadingState, onSuccess, onError)
-    }
-
-
+            console.log(error);
+        };
+        apiCallWithToken(url, body, method, loadingState, onSuccess, onError);
+    };
 
     useEffect(() => {
-        getChats()
-    }, [chat_id, chatsRefreshState])
+        getChats();
+    }, [chat_id, chatsRefreshState]);
+
+    // Filter chats based on search query
+    const filteredChats = Object.keys(chats).reduce((acc, period) => {
+        const filtered = chats[period].filter(chat =>
+            chat.name.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+        if (filtered.length > 0) acc[period] = filtered;
+        return acc;
+    }, {});
 
     return (
-        <div className='flex-1 overflow-auto p-3'>
-            {
-                isLoading && Object.keys(chats).every(key => !chats[key]?.length) ?
-                    <div className='h-full flex justify-center items-center'>
-                        <PiSpinnerGapBold size={20} className='text-main animate-spin' />
-                    </div>
-                    :
-                    Object.keys(chats).map((period) => (
-                        <div key={period}>
-                            {
-                                chats[period].length > 0 &&
-                                <>
-                                    <h2 className='text-xs text-right font-semibold mt-4 mb-1'>{period}</h2>
-                                    <div className='flex flex-col space-y-2'>
-                                        {chats[period].map((chat, index) => (
-                                            <ChatHistoryItem key={index} chat={chat} onDelete={deleteChat} onCurrentFlagUpdate={updateCurrentChatFlag} />
-                                        ))}
-                                    </div>
-                                </>
-                            }
-                        </div>
-                    ))
-            }
-            {
-                Object.keys(chats).every(key => !chats[key]?.length) &&
-                <div className='h-full flex justify-center items-center'>
-                    <h1 className='text-sm text-gray-400'>No chats found</h1>
+        <div className='flex-1 h-full overflow-auto'>
+            <div className='flex flex-col h-full overflow-auto'>
+                <div className='px-3'>
+                    <input
+                        type='text'
+                        placeholder='Search chats...'
+                        className='w-full p-2 border border-gray-600 rounded bg-transparent text-white'
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                    />
                 </div>
-            }
+                <div className='flex-1 overflow-auto px-3'>
+                    {isLoading && Object.keys(filteredChats).every(key => !filteredChats[key]?.length) ? (
+                        <div className='h-full flex justify-center items-center'>
+                            <PiSpinnerGapBold size={20} className='text-main animate-spin' />
+                        </div>
+                    ) : (
+                        Object.keys(filteredChats).map((period) => (
+                            <div key={period}>
+                                {filteredChats[period].length > 0 && (
+                                    <>
+                                        <h2 className='text-xs text-right font-semibold mt-4 mb-1'>{period}</h2>
+                                        <div className='flex flex-col space-y-2'>
+                                            {filteredChats[period].map((chat, index) => (
+                                                <ChatHistoryItem key={index} chat={chat} onDelete={deleteChat} onCurrentFlagUpdate={updateCurrentChatFlag} />
+                                            ))}
+                                        </div>
+                                    </>
+                                )}
+                            </div>
+                        ))
+                    )}
+
+                    {Object.keys(filteredChats).every(key => !filteredChats[key]?.length) && (
+                        <div className='h-full flex justify-center items-center'>
+                            <h1 className='text-sm text-gray-400'>No chats found</h1>
+                        </div>
+                    )}
+                </div>
+            </div>
+
         </div>
     );
 };
 
 export default ChatHistory;
-
-// const fakeChats = {
-//     "Today": [
-//         { "title": "Monthly Roadmap Review" },
-//         { "title": "Onboarding New Team Members" },
-//         { "title": "Quarterly Performance Evaluation" },
-//         { "title": "Backend Architecture Redesign" },
-//         { "title": "Database Migration Strategy" },
-//         { "title": "Marketing Campaign Launch" },
-//         { "title": "Weekly Team Sync" },
-//         { "title": "Bug Fixing Discussion" },
-//         { "title": "Discussing Project Updates" },
-//         { "title": "Client Feedback Meeting" },
-//         { "title": "Brainstorming Session on New Features" }
-//     ],
-//     "Previous 7 Days": [
-//         { "title": "Monthly Roadmap Review" },
-//         { "title": "Onboarding New Team Members" },
-//         { "title": "Quarterly Performance Evaluation" },
-//         { "title": "Backend Architecture Redesign" },
-//         { "title": "Database Migration Strategy" },
-//         { "title": "Marketing Campaign Launch" },
-//         { "title": "Weekly Team Sync" },
-//         { "title": "Bug Fixing Discussion" },
-//         { "title": "Weekly Team Sync" },
-//         { "title": "Bug Fixing Discussion" },
-//         { "title": "Sprint Retrospective" },
-//         { "title": "Feature Deployment Plan" }
-//     ],
-//     "Previous 30 Days": [
-//         { "title": "Monthly Roadmap Review" },
-//         { "title": "Onboarding New Team Members" },
-//         { "title": "Quarterly Performance Evaluation" },
-//         { "title": "Backend Architecture Redesign" },
-//         { "title": "Database Migration Strategy" },
-//         { "title": "Marketing Campaign Launch" },
-//         { "title": "Weekly Team Sync" },
-//         { "title": "Bug Fixing Discussion" },
-//         { "title": "Sprint Retrospective" },
-//         { "title": "Feature Deployment Plan" },
-//         { "title": "Weekly Team Sync" },
-//         { "title": "Bug Fixing Discussion" },
-//         { "title": "Sprint Retrospective" },
-//         { "title": "Feature Deployment Plan" }
-
-//     ]
-// }

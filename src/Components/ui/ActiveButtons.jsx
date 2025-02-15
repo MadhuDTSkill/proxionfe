@@ -10,7 +10,7 @@ const ActiveButtons = ({
             <div className='flex items-center w-full'>
                 {
                     options.map((option, index) => (
-                        <div key={index} className={`p-1 mx-[2px] rounded-md flex-1 font-semibold text-center cursor-pointer ${active === option ? 'bg-white ' : 'bg-black text-white'}`} onClick={() => setActive(option)}>
+                        <div key={index} className={`p-1 mx-[2px] rounded-md flex-1 font-semibold text-center cursor-pointer ${active === option ? 'bg-white ' : 'bg-black text-gray-300'}`} onClick={() => setActive(option)}>
                             {option}
                         </div>
                     ))

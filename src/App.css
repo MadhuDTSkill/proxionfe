@@ -23,7 +23,7 @@ body {
 }
 
 .font-main {
-  font-family: "Roboto", sans-serif;
+  font-family: "Noto Sans", sans-serif;
 }
 
 .cp {
@@ -121,10 +121,10 @@ pre {
 
 /* Headings */
 .llm-response h1 {
-  @apply text-2xl font-bold text-white mb-2 !important;
+  @apply text-2xl font-bold text-gray-300 mb-2 !important;
 }
 .llm-response h2 {
-  @apply text-xl font-semibold text-gray-200 mb-2 !important;
+  @apply text-xl font-semibold text-gray-300 mb-2 !important;
 }
 .llm-response h3 {
   @apply text-lg font-semibold text-gray-300 mb-1 !important;

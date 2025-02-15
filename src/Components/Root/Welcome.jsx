@@ -27,7 +27,7 @@ const Welcome = () => {
                 From black holes to dark energy, Proxion helps you <strong>Think, Explore, and Understand.</strong>
             </h2>
             <div className='mt-8 flex flex-col items-center space-y-4'>
-                <Button href={'/new-chat'} extraClassName='w-52'>
+                <Button href={'/'} extraClassName='w-52'>
                     <div className='flex items-center space-x-2'>
                         <PiPlus size={20} />
                         <span className='text-sm'>New Chat</span>
