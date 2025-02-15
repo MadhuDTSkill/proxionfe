@@ -14,6 +14,7 @@ import NotFound from './pages/extra/NotFound';
 import RootLayout from './layouts/RootLayout';
 import { useEffect, useState } from 'react';
 import Contexts from './contexts/Contexts';
+import Notes from './pages/chat/Notes';
 
 export default function App() {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: NewChat
+      },
+      {
+        path: 'notes',
+        Component: Notes,
       },
       {
         path: 'chats/:chat_id',
