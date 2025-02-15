@@ -45,7 +45,7 @@ const ModelResponse = ({
                   variants={reflectAnimation}
                   initial="hidden"
                   animate="visible"
-                  className="inline-block text-sm text-body"
+                  className="inline-block text-sm zero-2"
                 >
                   {char}
                 </motion.span>

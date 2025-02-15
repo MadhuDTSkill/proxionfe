@@ -15,6 +15,7 @@ import RootLayout from './layouts/RootLayout';
 import { useEffect, useState } from 'react';
 import Contexts from './contexts/Contexts';
 import Notes from './pages/chat/Notes';
+import NoteDetails from './pages/chat/NoteDetails';
 
 export default function App() {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: 'notes',
         Component: Notes,
+      },
+      {
+        path: 'notes/:chat_id',
+        Component: NoteDetails,
       },
       {
         path: 'chats/:chat_id',

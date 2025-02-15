@@ -53,11 +53,11 @@ const Messages = ({
       </div>
       {/* Scroll to bottom button */}
       <div
-        onClick={scrollCallBack}
+        onClick={() => scrollCallBack(true)}
         className={`${!inView ? 'opacity-100' : 'opacity-0'
           } sticky z-20 inset-x-0 bottom-0 flex justify-center transition-opacity duration-300 ease-in-out cp`}
       >
-        <IoMdArrowDown className='p-1.5 rounded-full' size={30} />
+        <IoMdArrowDown className='bg-main p-1.5 rounded-full' size={30} />
       </div>
       <span ref={ref} id='message-bottom'></span>
     </div>

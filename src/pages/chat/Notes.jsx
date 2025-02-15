@@ -29,17 +29,22 @@ const Notes = () => {
 
 
     return (
-        <div className="p-4">
-            {
-                isLoading ?
-                    <Buffer isLoading={isLoading} message="Loading Notes..." />
-                    :
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {notes.map((note) => (
-                            <NoteCard key={note.id} note={note} />
-                        ))}
-                    </div>
-            }
+        <div className="flex-1 flex flex-col h-full">
+            <div>
+                <h1 className="text-lg text-right font-bold m-4 text-main">Notes</h1>
+            </div>
+            <div className="flex-1 overflow-auto p-4">
+                {
+                    isLoading ?
+                        <Buffer isLoading={isLoading} message="Loading Notes..." />
+                        :
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            {notes.map((note) => (
+                                <NoteCard key={note.id} note={note} />
+                            ))}
+                        </div>
+                }
+            </div>
         </div>
     );
 };
@@ -55,10 +60,10 @@ const NoteCard = ({ note }) => {
     return (
         <div
             className="hover:scale-[1.02] p-5 border border-gray-200 rounded-2xl shadow-md cursor-pointer hover:shadow-xl duration-300 transition-all flex items-start gap-2"
-            onClick={() => navigate(`/notes/${note.id}`)}
+            onClick={() => navigate(`/notes/${note.chat}`)}
         >
             {/* Note Icon */}
-            <div className="p-2 rounded-full">
+            <div className="rounded-full">
                 <FileText size={24} className="text-main" />
             </div>
 

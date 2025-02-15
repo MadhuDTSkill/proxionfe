@@ -21,8 +21,8 @@ const CurrentChat = ({
   const messageContainerRef = useRef(null);
   const [allowAutoScroll, setAllowAutoScroll] = useState(true);
 
-  const scrollToBottom = () => {
-    if (allowAutoScroll) {
+  const scrollToBottom = (override_auto_scroll = false) => {
+    if (allowAutoScroll || override_auto_scroll) {
       const ele = document.getElementById("message-bottom");
       if (ele) {
         ele.scrollIntoView({ behavior: "smooth" });

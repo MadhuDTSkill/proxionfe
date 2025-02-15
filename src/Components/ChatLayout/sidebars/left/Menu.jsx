@@ -16,7 +16,6 @@ const Menu = () => {
     return (
         <div className="flex-1 flex flex-col justify-center gap-3 bg-bg2 text-gray-300 rounded-lg w-full">
             <MenuItem to="/" label="Proxion" currentPath={location.pathname} />
-            <MenuItem to="/ai-agents" label="AI Agents" currentPath={location.pathname} />
             <MenuItem to="/notes" label="Notes" currentPath={location.pathname} />
             <Line />
             <MenuItem icon={<HelpCircle size={18} />} label="Guide & FAQ" />

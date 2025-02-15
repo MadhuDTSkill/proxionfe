@@ -1,20 +1,13 @@
 import React, { useState } from 'react';
 import { MdSaveAlt, MdContentCopy, MdRefresh, MdPlayArrow, MdStop } from "react-icons/md";
 
-// Function to strip Markdown syntax using regular expressions
 const stripMarkdown = (markdown) => {
   return markdown
-    // Remove headers
     .replace(/[#]+/g, '')
-    // Remove emphasis (italic, bold)
     .replace(/[*_]+/g, '')
-    // Remove links
     .replace(/\[(.*?)\]\(.*?\)/g, '$1')
-    // Remove blockquotes
     .replace(/^>\s+/gm, '')
-    // Remove code blocks
     .replace(/`{1,3}.*?`{1,3}/g, '')
-    // Remove other special characters used in markdown (optional, add/remove based on your use case)
     .replace(/[\\<>*_~[\]]+/g, '')
     .trim();
 };
@@ -24,25 +17,22 @@ const MessageMenu = ({ message }) => {
   const [copyIcon, setCopyIcon] = useState(<MdContentCopy size={17} className='hover:text-gray-300 hover:p-1 rounded' />);
   const [isSpeaking, setIsSpeaking] = useState(false);
 
-  // Function to handle speech synthesis (text-to-speech)
   const startSpeaking = () => {
-    const cleanMessage = stripMarkdown(message); // Clean the message by stripping Markdown
+    const cleanMessage = stripMarkdown(message);
     const utterance = new SpeechSynthesisUtterance(cleanMessage);
     speechSynthesis.speak(utterance);
     setIsSpeaking(true);
 
     utterance.onend = () => {
-      setIsSpeaking(false); // Reset state when speech ends
+      setIsSpeaking(false);
     };
   };
 
-  // Function to stop speaking
   const stopSpeaking = () => {
-    speechSynthesis.cancel(); // Cancel the speech
+    speechSynthesis.cancel();
     setIsSpeaking(false);
   };
 
-  // Menu items array
   const menuItems = [
     {
       icon: copyIcon,
@@ -50,9 +40,9 @@ const MessageMenu = ({ message }) => {
       action: () => {
         navigator.clipboard.writeText(message)
           .then(() => {
-            // Change the icon to 'Copied' state
+
             setCopyIcon(<span className='text-main'>Copied!</span>);
-            // Reset the icon after 2 seconds
+
             setTimeout(() => setCopyIcon(<MdContentCopy size={17} className=' hover:text-gray-300 hover:p-1 rounded' />), 3000);
           })
           .catch((err) => console.error('Failed to copy: ', err));
@@ -62,7 +52,7 @@ const MessageMenu = ({ message }) => {
       icon: <MdRefresh size={20} className=' hover:text-gray-300 hover:p-1 rounded' />,
       title: 'Refresh',
       action: () => {
-        // Implement refresh logic here
+
         console.log('Refresh response');
       }
     },
@@ -74,15 +64,15 @@ const MessageMenu = ({ message }) => {
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'message.md'; // Filename
+        a.download = 'message.md';
         a.click();
-        URL.revokeObjectURL(url); // Clean up URL.createObjectURL
+        URL.revokeObjectURL(url);
       }
     },
     {
       icon: isSpeaking ? <MdStop size={20} className=' hover:text-gray-300 hover:p-1 rounded' /> : <MdPlayArrow size={20} className=' hover:text-gray-300 hover:p-1 rounded' />,
       title: isSpeaking ? 'Stop Speaking' : 'Play',
-      action: isSpeaking ? stopSpeaking : startSpeaking // Toggle between starting and stopping speech
+      action: isSpeaking ? stopSpeaking : startSpeaking
     }
   ];
 

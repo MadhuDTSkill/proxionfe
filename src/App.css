@@ -11,11 +11,14 @@
 }
 
 *::-webkit-scrollbar-thumb {
-  @apply bg-gradient-to-t from-main to-main;
+  @apply bg-gradient-to-t from-main via-main/10 to-main;
 }
 
 .zero {
   letter-spacing: -1px; /* Decreases space between characters */
+}
+.zero-2 {
+  letter-spacing: -2px; /* Decreases space between characters */
 }
 
 body {

@@ -75,7 +75,7 @@ const NotesViewModal = ({ chat_id }) => {
                                 variants={reflectAnimation}
                                 initial="hidden"
                                 animate="visible"
-                                className="inline-block text-[10px] text-main"
+                                className="inline-block text-[10px] text-main zero-2"
                             >
                                 {char}
                             </motion.span>
