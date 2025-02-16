@@ -10,11 +10,19 @@ const Prompt = ({ setStaticPrompt, setPrompt, prompt, onSubmit, isLoading, isTyp
   const [uploadedFile, setUploadedFile] = useState(null);
   const [isUploadingFile, setIsUploadingFile] = useState(false);
   const fileInputRef = useRef(null);
+  const textareaRef = useRef(null);
   const { chat_id } = useParams();
 
   useEffect(() => {
     document.getElementById('input-box')?.focus();
   }, []);
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height = `${Math.min(textareaRef.current.scrollHeight, 200)}px`;
+    }
+  }, [prompt]);
 
   const handleTextChange = (event) => {
     setPrompt(event.target.value);
@@ -98,14 +106,27 @@ const Prompt = ({ setStaticPrompt, setPrompt, prompt, onSubmit, isLoading, isTyp
             id="input-box"
             value={prompt}
             onChange={handleTextChange}
-            rows={1}
             placeholder="Message to Proxion..."
             maxLength={8000}
             className={`pl-12 pr-12 p-3 w-full bg-transparent rounded-lg outline-none ring-2 ring-main ring-offset-2 ring-offset-bg ${isTyping ? 'animate-pulse' : ''}`}
-            onKeyDown={(event) => event.key === 'Enter' && !event.shiftKey && handleSubmit(event)}
-            style={{ resize: 'none', overflow: 'hidden' }}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                handleSubmit(event);
+              }
+            }}
+            ref={(el) => {
+              if (el) {
+                el.style.height = "auto"; // Reset height to auto before measuring new height
+                el.style.height = Math.min(el.scrollHeight, 400) + "px"; // Max height 400px
+              }
+            }}
+            style={{
+              resize: "none",
+              overflowY: "auto",
+              maxHeight: "200px", // Prevent excessive growth
+            }}
           />
-
           <button
             type="submit"
             className="absolute right-0 rounded-full m-1"

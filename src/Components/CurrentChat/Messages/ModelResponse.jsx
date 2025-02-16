@@ -18,7 +18,7 @@ const ModelResponse = ({
   const dispatch = useDispatch();
   const [showThoughts, setShowThoughts] = useState(false);
   const [elapsedTime, setElapsedTime] = useState(0);
-  const responseTime = message?.time_taken ? `${message.time_taken} seconds` : "N/A";
+  const responseTime = message?.time_taken ? `${Math.round(message.time_taken + 1)} seconds` : "N/A";
 
   // Start the live timer when isLoading is true
   useEffect(() => {
