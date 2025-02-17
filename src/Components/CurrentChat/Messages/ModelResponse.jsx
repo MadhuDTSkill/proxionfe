@@ -5,20 +5,13 @@ import Title from "../../../Title";
 import Markdown from "react-markdown";
 import WordTypewriter from "../../ui/Typing";
 import { setNotesBusy } from "../../../redux/Slice";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import ResponseResources from "./ResponseResources";
 
-const ModelResponse = ({
-  message,
-  addMessage,
-  scrollCallBack,
-  isLoading,
-  isTyping,
-  waitingMessage,
-}) => {
+const ModelResponse = ({ message, addMessage, scrollCallBack, isLoading, isTyping, waitingMessage }) => {
   const dispatch = useDispatch();
-  const [showThoughts, setShowThoughts] = useState(false);
   const [elapsedTime, setElapsedTime] = useState(0);
   const responseTime = message?.time_taken ? `${Math.round(message.time_taken + 1)} seconds` : "N/A";
+
 
   // Start the live timer when isLoading is true
   useEffect(() => {
@@ -50,11 +43,11 @@ const ModelResponse = ({
   return (
     <div className="bg-bg2/30 rounded-lg">
       <h1 className="font-semibold max-w-3xl text-sm mx-auto my-2 flex justify-between items-center">
-        <Title />
-        <span className="text-xs text-gray-400">
-          Response Time: {isLoading ? `${elapsedTime} seconds` : responseTime}
-        </span>
+        Proxion
       </h1>
+
+      {/* Response Resources Component */}
+      <ResponseResources message={message} />
 
       {/* Response Section */}
       <div className="hover:bg-opacity-10 bg-opacity-5 p-2">
@@ -77,7 +70,7 @@ const ModelResponse = ({
           ) : isTyping ? (
             <WordTypewriter
               text={message.response}
-              typeSpeed={20}
+              typeSpeed={5}
               animate
               onBegin={() => {
                 dispatch(setNotesBusy(true));
@@ -95,31 +88,11 @@ const ModelResponse = ({
               <Markdown>{message.response}</Markdown>
             </div>
           )}
+
+          <span className="text-xs text-gray-400 self-end">
+            Response Time: {isLoading ? `${elapsedTime} seconds` : responseTime}
+          </span>
         </div>
-
-        {/* Thoughts Section */}
-        {!isLoading && message.is_thoughted && (
-          <div className="mt-4 px-3 flex flex-col items-end max-w-3xl text-sm mx-auto my-2">
-            <button
-              className="flex items-center text-sm font-semibold text-white hover:opacity-80 transition"
-              onClick={() => setShowThoughts(!showThoughts)}
-            >
-              {showThoughts ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-              <span className="ml-1">Thoughts</span>
-            </button>
-
-            {showThoughts && (
-              <motion.div
-                className="mt-2 text-sm text-gray-300 w-full"
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-              >
-                <pre><Markdown>{message?.thinked_thoughts}</Markdown></pre>
-              </motion.div>
-            )}
-          </div>
-        )}
       </div>
     </div>
   );

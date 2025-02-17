@@ -96,46 +96,24 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 }
 
-code {
-  padding: 0.2em 0.4em; /* Padding around the text */
-  border-radius: 4px; /* Rounded corners */
-  font-family: "Courier New", Courier, monospace; /* Monospace font */
-  font-size: 1.1rem; /* Slightly larger font */
-}
-
-pre {
-  margin-bottom: 20px !important;
-  margin-top: 20px !important;
-  background-color: #1e1e1e; /* Darker background for block code */
-  color: rgba(255, 255, 255, 0.7); /* White text */
-  padding: 3em; /* Padding around the code block */
-  max-width: 100%; /* Set maximum width */
-  overflow-x: auto; /* Allow horizontal scrolling only */
-  font-family: "Courier New", Courier, monospace; /* Monospace font */
-  font-size: 1rem; /* Font size */
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  box-shadow: 2px 2px 5px 2px black; /* Box shadow for a subtle depth */
-}
-
 .llm-response {
   @apply text-sm leading-relaxed !important;
 }
 
 /* Headings */
 .llm-response h1 {
-  @apply text-2xl font-bold text-gray-300 mb-2 !important;
+  @apply text-xl font-bold text-gray-300 mb-2 !important;
 }
 .llm-response h2 {
-  @apply text-xl font-semibold text-gray-300 mb-2 !important;
+  @apply text-[1.10rem] font-semibold text-gray-300 mb-2 !important;
 }
 .llm-response h3 {
-  @apply text-lg font-semibold text-gray-300 mb-1 !important;
+  @apply text-[1rem] font-semibold text-gray-300 mb-1 !important;
 }
 
 /* Paragraphs */
 .llm-response p {
-  @apply mb-3 !important;
+  @apply mb-5 !important;
 }
 
 /* Lists */
@@ -149,16 +127,7 @@ pre {
   @apply mb-1 !important;
 }
 
-/* Code Blocks */
-.llm-response pre {
-  @apply bg-gray-900 text-gray-300 p-3 rounded-lg overflow-x-auto !important;
-}
-.llm-response code {
-  @apply bg-gray-800 text-yellow-300 px-1 py-0.5 rounded-md !important;
-}
-
-/* Strong and Emphasis */
-
+/* /* Strong and Emphasis */
 .llm-response strong {
   @apply font-semibold text-main !important;
 }
