@@ -25,6 +25,7 @@ const ChatHistoryItem = ({ chat, onDelete, onCurrentFlagUpdate }) => {
     const confirmDelete = () => {
         onDelete(chat.id);
         setModalOpen(false);
+        setDropdownOpen(false);
     };
 
     const isActive = chat_id === chat.id;

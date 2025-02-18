@@ -4,6 +4,7 @@ import apiCallWithToken from '../../../../Functions/Axios';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { PiSpinnerGapBold } from "react-icons/pi";
+import Buffer from '../../../ui/Buffer'
 
 const ChatHistory = () => {
     const { chat_id } = useParams();
@@ -47,9 +48,21 @@ const ChatHistory = () => {
         let method = 'delete';
         let loadingState = setIsLoading;
         const onSuccess = () => {
+            setChats(prevChats => {
+                const updatedChats = {};
+
+                Object.keys(prevChats).forEach(period => {
+                    const filteredChats = prevChats[period].filter(chat => chat.chat_id !== chat_id);
+                    if (filteredChats.length > 0) {
+                        updatedChats[period] = filteredChats;
+                    }
+                });
+
+                return updatedChats;
+            });
             getChats();
-            nav('/chats');
-        };
+            nav('/');
+        }
         const onError = (error) => {
             console.log(error);
         };
@@ -83,9 +96,7 @@ const ChatHistory = () => {
                 </div>
                 <div className='flex-1 overflow-auto px-3'>
                     {isLoading && Object.keys(filteredChats).every(key => !filteredChats[key]?.length) ? (
-                        <div className='h-full flex justify-center items-center'>
-                            <PiSpinnerGapBold size={20} className='text-main animate-spin' />
-                        </div>
+                        <Buffer isLoading={isLoading} message="Delete chat..." />
                     ) : (
                         Object.keys(filteredChats).map((period) => (
                             <div key={period}>
