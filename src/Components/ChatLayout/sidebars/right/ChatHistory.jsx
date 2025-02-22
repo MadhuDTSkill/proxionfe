@@ -96,7 +96,7 @@ const ChatHistory = () => {
                 </div>
                 <div className='flex-1 overflow-auto px-3'>
                     {isLoading && Object.keys(filteredChats).every(key => !filteredChats[key]?.length) ? (
-                        <Buffer isLoading={isLoading} message="Delete chat..." />
+                        <Buffer isLoading={isLoading} message="Loading chats..." />
                     ) : (
                         Object.keys(filteredChats).map((period) => (
                             <div key={period}>

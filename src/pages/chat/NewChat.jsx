@@ -16,7 +16,7 @@ const NewChat = () => {
     if (!prompt.trim()) return;
 
     let url = "chat/chats/";
-    let body = { name: prompt };
+    let body = { name: prompt.slice(0, 99) };
     let method = "post";
     let loadingStage = setIsLoading;
 

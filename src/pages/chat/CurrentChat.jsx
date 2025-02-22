@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import ChatConnectionWrapper from "../../Wrappers/ChatConnectionWrapper";
+import Button from "../../Components/ui/Button";
 import Messages from "../../Components/CurrentChat/Messages/Messages";
 import Prompt from "../../Components/CurrentChat/Prompt/Prompt";
 import { useLocation } from "react-router-dom";
@@ -11,9 +12,11 @@ const CurrentChat = ({
   isLoading,
   isMessagesLoading,
   isTyping,
+  isError,
   sendPrompt,
   messages,
   addMessage,
+  retryConnection
 }) => {
   const location = useLocation();
   const [prompt, setPrompt] = useState("");
@@ -115,7 +118,18 @@ const CurrentChat = ({
               setStaticPrompt={setStaticPrompt}
             />
           ) : (
-            ""
+            isError && (
+              <div className="flex flex-col items-center justify-center p-4 text-red-700 rounded-lg">
+                <p className="text-lg font-semibold">Chat Disconnected</p>
+                <p className="my-1">Your connection was lost. Please try reconnecting.</p>
+                <Button
+                  onClick={retryConnection}
+                  extraClassName="mt-3 px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 transition duration-200"
+                >
+                  Reconnect
+                </Button>
+              </div>
+            )
           )}
         </div>
       </div>

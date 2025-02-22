@@ -38,7 +38,7 @@ const ChatHistoryItem = ({ chat, onDelete, onCurrentFlagUpdate }) => {
     return (
         <>
             <div
-                className={`grid grid-cols-12 py-2 px-2.5 cursor-pointer bg-bg hover:bg-main rounded-md items-center ${isActive ? 'border-l-2 border-main' : ''}`}
+                className={`grid grid-cols-12 py-2 px-2.5 cursor-pointer bg-bg hover:bg-main rounded-md items-center ${isActive ? 'border-l-4 border-main' : ''}`}
                 onClick={handleNavigate}
             >
                 {/* Chat Icon (3 columns) */}
