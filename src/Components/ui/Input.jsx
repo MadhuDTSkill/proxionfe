@@ -16,10 +16,10 @@ const Input = ({ className = '', extraClassName = '', ...props }) => {
     );
 };
 
-// Input.defaultProps = {
-//     className: '',
-//     extraClassName: '',
-//     placeholder: 'Enter text here...',
-// };
+
+
+
+
+
 
 export default Input;

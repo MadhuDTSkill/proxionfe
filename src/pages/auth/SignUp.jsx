@@ -7,7 +7,7 @@ import Card from '../../Components/ui/Card';
 import Button from '../../Components/ui/Button';
 
 const Signup = () => {
-  // State for form inputs
+
   const [formData, setFormData] = useState({
     first_name: '',
     last_name: '',
@@ -19,13 +19,13 @@ const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
 
 
-  // Handle input change
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Handle form submission
+
   const handleSubmit = (e) => {
     e.preventDefault();
     let url = 'auth/register'

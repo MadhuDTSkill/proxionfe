@@ -9,9 +9,9 @@ import { MessageSquareText } from 'lucide-react';
 
 const ChatHistoryItem = ({ chat, onDelete, onCurrentFlagUpdate }) => {
     const nav = useNavigate();
-    const { chat_id } = useParams(); // Get the current chat ID from URL
-    const [isModalOpen, setModalOpen] = useState(false); // Modal visibility state
-    const [isDropdownOpen, setDropdownOpen] = useState(false); // Dropdown state
+    const { chat_id } = useParams();
+    const [isModalOpen, setModalOpen] = useState(false);
+    const [isDropdownOpen, setDropdownOpen] = useState(false);
 
     const handleNavigate = () => {
         return nav(`/chats/${chat.id}`);

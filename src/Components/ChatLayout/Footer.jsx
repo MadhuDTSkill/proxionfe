@@ -1,7 +1,7 @@
 import { ReactTyped } from 'react-typed';
 
 const Footer = () => {
-  // Get current year
+
   const currentYear = new Date().getFullYear();
 
   return (

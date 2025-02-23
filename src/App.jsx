@@ -22,24 +22,24 @@ export default function App() {
 
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsSmallScreen(window.innerWidth < 768); // Mobile & small tablets
+      setIsSmallScreen(window.innerWidth < 768);
     };
 
-    checkScreenSize(); // Check on mount
+    checkScreenSize();
     window.addEventListener('resize', checkScreenSize);
 
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
 
-  // if (isSmallScreen) {
-  //   return (
-  //     <div className="h-screen flex items-center justify-center text-center bg-black text-gray-300 p-4">
-  //       <p className="text-lg font-semibold">
-  //         This application is not supported on small screens. Please use a desktop or tablet.
-  //       </p>
-  //     </div>
-  //   );
-  // }
+
+
+
+
+
+
+
+
+
 
   return (
     <Provider store={Store}>

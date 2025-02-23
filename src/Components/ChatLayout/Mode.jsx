@@ -1,7 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
 import { MdModelTraining } from "react-icons/md";
 
-const MODES = ["Scientific", "Kids", "Casual", "Story"];
+const MODES = [
+    "Casual",
+    "Analytical",
+    "Scientific",
+    "Motivational",
+    "Story",
+    "Humorous",
+    "Science Fiction",
+    "Kids"
+];
+
+
 const STORAGE_KEY = "selectedMode";
 
 const Mode = () => {
@@ -9,13 +20,13 @@ const Mode = () => {
     const [selectedMode, setSelectedMode] = useState("Casual");
     const modeRef = useRef(null);
 
-    // Load mode from local storage
+
     useEffect(() => {
         const savedMode = localStorage.getItem(STORAGE_KEY);
         if (savedMode) setSelectedMode(savedMode);
     }, []);
 
-    // Close the modal when clicking outside
+
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (modeRef.current && !modeRef.current.contains(event.target)) {
@@ -28,7 +39,7 @@ const Mode = () => {
         };
     }, []);
 
-    // Handle mode selection
+
     const handleModeSelect = (mode) => {
         setSelectedMode(mode);
         localStorage.setItem(STORAGE_KEY, mode);

@@ -11,12 +11,11 @@ export const Slice = createSlice({
   name: "slice",
   initialState,
   reducers: {
-    // Latest response management
     addLatestMessage: (state, action) => {
       const newMessage = action.payload;
       state.latestMessage = newMessage;
     },
-    // Waiting message management
+
     addWaitingMessage: (state, action) => {
       const newMessage = action.payload;
       state.waitingMessage = newMessage;

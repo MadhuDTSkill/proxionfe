@@ -13,7 +13,7 @@ const ModelResponse = ({ message, addMessage, scrollCallBack, isLoading, isTypin
   const responseTime = message?.time_taken ? `${Math.round(message.time_taken + 1)} seconds` : "N/A";
 
 
-  // Start the live timer when isLoading is true
+
   useEffect(() => {
     let timer;
     if (isLoading) {

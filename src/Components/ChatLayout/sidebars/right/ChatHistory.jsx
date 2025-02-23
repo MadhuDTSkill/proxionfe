@@ -73,7 +73,7 @@ const ChatHistory = () => {
         getChats();
     }, [chat_id, chatsRefreshState]);
 
-    // Filter chats based on search query
+
     const filteredChats = Object.keys(chats).reduce((acc, period) => {
         const filtered = chats[period].filter(chat =>
             chat.name.toLowerCase().includes(searchQuery.toLowerCase())

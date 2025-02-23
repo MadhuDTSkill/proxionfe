@@ -9,12 +9,12 @@ const ResponseResources = ({ message }) => {
 
     const toggleThoughts = () => {
         setShowThoughts(!showThoughts);
-        if (!showThoughts) setShowTools(false); // Close tools when opening thoughts
+        if (!showThoughts) setShowTools(false);
     };
 
     const toggleTools = () => {
         setShowTools(!showTools);
-        if (!showTools) setShowThoughts(false); // Close thoughts when opening tools
+        if (!showTools) setShowThoughts(false);
     };
 
     return (
@@ -26,7 +26,7 @@ const ResponseResources = ({ message }) => {
                         className={`flex items-center bg-bg2/60 p-1.5 rounded-lg w-28 text-sm font-semibold transition ${showThoughts ? "text-white" : "text-gray-400 hover:opacity-80"
                             }`}
                         onClick={toggleThoughts}
-                        disabled={showTools} // Disable when tools are open
+                        disabled={showTools}
                     >
                         {showThoughts ? <ChevronUp size={16} strokeWidth={3} /> : <ChevronDown size={16} strokeWidth={3} />}
                         <span className="ml-3">Thoughts</span>
@@ -54,7 +54,7 @@ const ResponseResources = ({ message }) => {
                         className={`flex items-center bg-bg2/60 p-1.5 rounded-lg w-36 text-sm font-semibold transition ${showTools ? "text-white" : "text-gray-400 hover:opacity-80"
                             }`}
                         onClick={toggleTools}
-                        disabled={showThoughts} // Disable when thoughts are open
+                        disabled={showThoughts}
                     >
                         {showTools ? <ChevronUp size={16} strokeWidth={3} /> : <ChevronDown size={16} strokeWidth={3} />}
                         <span className="ml-3">Tool Responses</span>

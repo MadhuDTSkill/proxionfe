@@ -17,8 +17,7 @@ const TextArea = ({ className = '', extraClassName = '', ...props }) => {
 
 export default TextArea
 
-// TextArea.defaultProps = {
-//     className: '',
-//     extraClassName: '',
-//     placeholder: 'Enter text here...',
-// };
+
+
+
+

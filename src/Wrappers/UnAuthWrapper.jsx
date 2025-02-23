@@ -1,5 +1,5 @@
 import React from 'react';
-import {jwtDecode} from 'jwt-decode'; // Import jwt-decode correctly
+import { jwtDecode } from 'jwt-decode';
 import Redirecting from '../Components/ui/Redirecting'
 
 function isTokenExpired(token) {
@@ -10,7 +10,7 @@ function isTokenExpired(token) {
 
 
 function UnAuthWrapper(WrappedComponent) {
-  
+
   const HOC = (props) => {
     const storedAccessToken = localStorage.getItem('accessToken')
     if (storedAccessToken && !isTokenExpired(storedAccessToken)) {

@@ -117,14 +117,14 @@ const Prompt = ({ setStaticPrompt, setPrompt, prompt, onSubmit, isLoading, isTyp
             }}
             ref={(el) => {
               if (el) {
-                el.style.height = "auto"; // Reset height to auto before measuring new height
-                el.style.height = Math.min(el.scrollHeight, 400) + "px"; // Max height 400px
+                el.style.height = "auto";
+                el.style.height = Math.min(el.scrollHeight, 400) + "px";
               }
             }}
             style={{
               resize: "none",
               overflowY: "auto",
-              maxHeight: "200px", // Prevent excessive growth
+              maxHeight: "200px",
             }}
           />
           <button

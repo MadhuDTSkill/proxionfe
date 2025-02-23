@@ -37,16 +37,16 @@ const CurrentChat = ({
     if (messageContainerRef.current) {
       const { scrollTop, scrollHeight, clientHeight } = messageContainerRef.current;
 
-      // If user scrolls up, disable auto-scroll
+
       if (scrollTop + clientHeight < scrollHeight - 10) {
         setAllowAutoScroll(false);
       } else {
-        setAllowAutoScroll(true); // Re-enable auto-scroll if user scrolls to bottom
+        setAllowAutoScroll(true);
       }
     }
   };
 
-  // Attach scroll event listener
+
   useEffect(() => {
     const messageContainer = messageContainerRef.current;
     if (messageContainer) {
@@ -59,18 +59,18 @@ const CurrentChat = ({
     };
   }, []);
 
-  // Scroll to bottom when messages update (only if auto-scroll is enabled)
+
   useEffect(() => {
     scrollToBottom();
   }, [messages, isLoading]);
 
-  // Handling initial prompt from location state
+
   useEffect(() => {
-    if (location.state && isConnected && messages.length === 0 && !isMessagesLoading) {
+    if (location.state && isConnected && messages.length === 0 && !isMessagesLoading && !isError) {
       onSubmit(location?.state?.prompt);
       location.state = null;
     }
-  }, [location, isConnected, isMessagesLoading]);
+  }, [location, isConnected, isMessagesLoading, isError]);
 
   const onSubmit = (tempPrompt = null) => {
     setStaticPrompt(tempPrompt ? tempPrompt : prompt);

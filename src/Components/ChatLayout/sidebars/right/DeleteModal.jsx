@@ -1,10 +1,10 @@
-// Modal.js
+
 import React from 'react';
 import Card from '../../../ui/Card';
 import Button from '../../../ui/Button';
 
 const DeleteModal = ({ isOpen, onClose, onConfirm }) => {
-    if (!isOpen) return null; // Don't render if not open
+    if (!isOpen) return null;
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-transparent">

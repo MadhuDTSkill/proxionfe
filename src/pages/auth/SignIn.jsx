@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ReactTyped } from 'react-typed'; // Correct import for Typed
+import { ReactTyped } from 'react-typed';
 import Title from '../../Title'
 import { apiCall } from '../../Functions/Axios';
 import { setData, setJsonData } from '../../Functions/LocalStorage';
@@ -8,20 +8,20 @@ import Card from '../../Components/ui/Card';
 import Button from '../../Components/ui/Button';
 
 const Signin = () => {
-  // State for form inputs
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
   const [isLoading, setIsLoading] = useState(false);
 
-  // Handle input change
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Handle form submission
+
   const handleSubmit = (e) => {
     e.preventDefault();
     let url = 'auth/login'

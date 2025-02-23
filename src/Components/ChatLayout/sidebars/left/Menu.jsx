@@ -7,7 +7,7 @@ const Menu = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    // Handle logout
+
     const handleLogout = () => {
         localStorage.clear();
         navigate("/signin");
