@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { getData } from '../Functions/localStorage';
 import apiCallWithToken from '../Functions/Axios';
 import { addLatestMessage, addWaitingMessage, refreshChats } from '../redux/Slice';
+import { BACKEND_HOST } from '../Functions/Axios';
 
 const token = getData('accessToken');
 
@@ -54,7 +55,7 @@ const ChatConnectionWrapper = (WrappedComponent) => {
         };
 
         const setupWebSocket = () => {
-            ws.current = new WebSocket(`ws://127.0.0.1:8000/ws/chat/${chat_id}?token=${token}`);
+            ws.current = new WebSocket(`${BACKEND_HOST}/ws/chat/${chat_id}/`);
 
             ws.current.onopen = () => {
                 setIsConnected(true);
