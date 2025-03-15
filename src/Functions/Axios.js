@@ -2,7 +2,7 @@
 import axios from "axios";
 import { getData } from "../Functions/localStorage";
 
-BACKEND_HOST = "https://proxionbe.onrender.com/api/";
+const BACKEND_HOST = "https://proxionbe.onrender.com/api/";
 
 const instanceWithToken = axios.create({
   baseURL: BACKEND_HOST,
