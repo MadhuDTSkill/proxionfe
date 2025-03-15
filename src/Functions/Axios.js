@@ -2,8 +2,10 @@
 import axios from "axios";
 import { getData } from "../Functions/localStorage";
 
+BACKEND_HOST = "https://proxionbe.onrender.com/api/";
+
 const instanceWithToken = axios.create({
-  baseURL: "http://localhost:8000/api/",
+  baseURL: BACKEND_HOST,
   timeout: 60000,
   headers: {
     Authorization: `Bearer ${getData("accessToken")}`,
@@ -11,13 +13,13 @@ const instanceWithToken = axios.create({
 });
 
 const instance = axios.create({
-  baseURL: "http://localhost:8000/api/",
+  baseURL: BACKEND_HOST,
   timeout: 60000,
 });
 
 const refreshToken = async () => {
   try {
-    const response = await axios.post(`http://localhost:8003/api/user/token/refresh/`, {
+    const response = await axios.post(`${BACKEND_HOST}auth/refresh/`, {
       refresh: getData("refreshToken"),
     });
     const newAccessToken = response.data.access;
