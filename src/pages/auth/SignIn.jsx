@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ReactTyped } from 'react-typed';
 import Title from '../../Title'
 import { apiCall } from '../../Functions/Axios';
-import { setData, setJsonData } from '../../Functions/LocalStorage';
+import { setData, setJsonData } from '../../Functions/localStorage';
 import { ImSpinner9 } from "react-icons/im";
 import Card from '../../Components/ui/Card';
 import Button from '../../Components/ui/Button';
